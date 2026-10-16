@@ -2,6 +2,7 @@
 """Generate the public proof/phone report only from passing recorded runs."""
 import argparse
 from datetime import datetime, timezone
+import hashlib
 import json
 from pathlib import Path
 import statistics
@@ -9,6 +10,14 @@ import statistics
 
 def load_run(path):
     folder = Path(path)
+    for line in (folder / 'SHA256SUMS').read_text().splitlines():
+        digest, name = line.split(maxsplit=1)
+        item = folder / name.strip()
+        with item.open('rb') as stream:
+            if hashlib.file_digest(stream, 'sha256').hexdigest() != digest:
+                raise ValueError(f'Artifact checksum mismatch: {item}')
+    if (folder / 'final-exit-code').read_text().strip() != '0':
+        raise ValueError(f'Nonzero final exit code: {folder}')
     accounting = json.loads((folder / 'accounting.json').read_text())
     summary = json.loads((folder / 'summary.json').read_text())
     machine = json.loads((folder / 'machine.json').read_text())
@@ -17,6 +26,15 @@ def load_run(path):
     metrics = summary['metrics']
     latencies = metrics['full_request_ms{phase:hold}']['values']
     settings = machine['settings']
+    binary = machine.get('server_executable_sha256')
+    if not isinstance(binary, str) or len(binary) != 64 or not machine.get('server_configuration', {}).get('argv'):
+        raise ValueError(f'Missing actual server identity/configuration: {folder}')
+    if any(value.get('ok') is not True for metric in metrics.values() for value in metric.get('thresholds', {}).values()):
+        raise ValueError(f'A recorded threshold failed: {folder}')
+    for phase in ['client_outstanding_all_phases', 'client_outstanding_requests_started_in_hold']:
+        record = accounting[phase]
+        if record['unfinished'] != 0 or record.get('minimum', 0) < 0:
+            raise ValueError(f'Unbalanced request accounting: {folder}')
     resources = [json.loads(line) for line in (folder / 'resources.jsonl').read_text().splitlines()]
     def resource(role, field, reduction):
         samples = [r[role][field] for r in resources if r.get(role) and r[role].get(field) is not None]
@@ -40,7 +58,7 @@ def load_run(path):
         'generator_rss_peak_bytes': resource('client', 'rss_bytes', max),
         'source_commit': machine['git']['stdout'].strip(),
         'binary_sha256': machine['server_executable_sha256'],
-        'artifact_path': str(folder),
+        'artifact_path': str(folder.resolve().relative_to(Path.cwd().resolve())),
         'endpoints': {endpoint: {
             'p95_ms': metrics[f'full_request_ms{{phase:hold,endpoint:{endpoint}}}']['values']['p(95)'],
             'p99_ms': metrics[f'full_request_ms{{phase:hold,endpoint:{endpoint}}}']['values']['p(99)'],
@@ -68,6 +86,7 @@ parser.add_argument('--open', required=True)
 parser.add_argument('--repo', default='https://github.com/acephos/rust-reel-api-lab')
 args = parser.parse_args()
 a, u, o = [load_run(getattr(args, name)) for name in ['active', 'users', 'open']]
+assert [a['mode'], u['mode'], o['mode']] == ['active', 'original', 'open'], 'Incorrect workload modes'
 assert a['duration_s'] >= 300 and u['duration_s'] >= 300, 'Require real five-minute holds'
 assert a['binary_sha256'] == u['binary_sha256'] == o['binary_sha256'], 'Different binaries require separate reports'
 notes = [
