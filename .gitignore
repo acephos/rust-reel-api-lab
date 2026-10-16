@@ -1,0 +1,10 @@
+/target/
+/vendor/
+/data/
+/.tools/
+/run/
+*.db
+*.db-wal
+*.db-shm
+third_party/challenge/seed/tsv/
+third_party/challenge/seed/tokens.json
