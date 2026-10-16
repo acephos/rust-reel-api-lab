@@ -29,6 +29,7 @@ function millis(s) {
 const rampMs = mode === 'original' ? millis(ramp) : 0;
 const holdMs = millis(duration);
 const thresholds = {
+  'full_request_ms{phase:hold}': ['p(95)<500', 'p(99)<1000'],
   semantic_success: ['rate==1'],
   checks: ['rate==1'],
   'http_req_failed{phase:hold}': ['rate<0.01'],
