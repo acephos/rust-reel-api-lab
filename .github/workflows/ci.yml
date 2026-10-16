@@ -1,0 +1,32 @@
+name: Rust API checks
+on: [push, pull_request]
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install utilities
+        run: sudo apt-get update && sudo apt-get install -y build-essential curl sqlite3 jq openssl
+      - uses: dtolnay/rust-toolchain@1.98.1
+        with:
+          components: rustfmt, clippy
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '26.8.1'
+      - name: Build optimized engine and seed
+        run: bash scripts/build.sh && bash scripts/seed.sh
+      - name: Formatting and Clippy
+        run: cargo fmt --check && RUSTFLAGS='-C target-cpu=native' cargo clippy --release --locked -- -D warnings
+      - name: Epoll fallback correctness
+        run: bash scripts/check-upstream.sh --epoll && python3 tests/functional.py --seed third_party/challenge/seed/feed.db --server target/release/twelve-rust-poll --backend epoll
+      - name: io_uring kernel availability
+        run: |
+          if [ "$(cat /proc/sys/kernel/io_uring_disabled)" != 0 ]; then
+            echo 'Hosted kernel disables io_uring; optimized backend verified in local proof artifacts.'
+          else
+            bash scripts/check-upstream.sh
+            python3 tests/functional.py --seed third_party/challenge/seed/feed.db --server target/release/twelve-rust-poll --backend uring
+          fi

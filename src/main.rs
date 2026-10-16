@@ -1,4 +1,5 @@
 mod db;
+mod demo;
 mod net;
 mod uring;
 use base64::{Engine, engine::general_purpose::URL_SAFE_NO_PAD};
@@ -389,6 +390,7 @@ struct App {
     db: db::Db,
     auth: Auth,
     start: Instant,
+    demo: Option<demo::Demo>,
 }
 // This binary owns one SQLite connection. The io_uring workers hold the same
 // Mutex<App> for the entire query/commit batch, so SQLite and Auth are never
@@ -398,6 +400,11 @@ impl App {
     fn serve(&mut self, frame: &Frame<'_>, out: &mut Vec<u8>) -> u16 {
         let path = frame.path.split('?').next().unwrap_or(frame.path);
         if frame.method == "GET" {
+            if let Some(demo) = &self.demo {
+                if let Some(status) = demo.serve(path, out) {
+                    return status;
+                }
+            }
             if path == "/feed" {
                 return self.db.read(None, out);
             }
@@ -477,6 +484,7 @@ fn main() {
         db: db::Db::open(&path, options.group),
         auth: Auth::new(&secret),
         start: Instant::now(),
+        demo: demo::Demo::from_env(),
     };
     if epoll {
         net::run(&format!("{host}:{port}"), app, options).expect("epoll server");

@@ -117,6 +117,15 @@ fn flush(ep: i32, fd: usize, clients: &mut [Client]) -> bool {
     true
 }
 fn response(status: u16, body: &[u8], close: bool, out: &mut Vec<u8>) {
+    response_with_type(status, body, close, out, b"application/json");
+}
+fn response_with_type(
+    status: u16,
+    body: &[u8],
+    close: bool,
+    out: &mut Vec<u8>,
+    content_type: &[u8],
+) {
     out.extend_from_slice(match status {
         200 => b"HTTP/1.1 200 OK\r\n",
         201 => b"HTTP/1.1 201 Created\r\n",
@@ -126,7 +135,11 @@ fn response(status: u16, body: &[u8], close: bool, out: &mut Vec<u8>) {
         503 => b"HTTP/1.1 503 Service Unavailable\r\n",
         _ => b"HTTP/1.1 500 Internal Server Error\r\n",
     });
-    out.extend_from_slice(b"Content-Type: application/json\r\nContent-Length: ");
+    out.extend_from_slice(
+        b"X-Content-Type-Options: nosniff\r\nCache-Control: no-store\r\nContent-Type: ",
+    );
+    out.extend_from_slice(content_type);
+    out.extend_from_slice(b"\r\nContent-Length: ");
     number(body.len() as u64, out);
     out.extend_from_slice(if close {
         b"\r\nConnection: close\r\n\r\n"
@@ -326,7 +339,13 @@ pub fn run(address: &str, mut app: App, options: Options) -> io::Result<()> {
                             clients[fd].continued = false;
                             body.clear();
                             let status = app.serve(&req, &mut body);
-                            response(status, &body, req.close, &mut arena);
+                            response_with_type(
+                                status,
+                                &body,
+                                req.close,
+                                &mut arena,
+                                crate::demo::content_type(&req, status),
+                            );
                             count += 1;
                             offset += req.consumed;
                             if req.close {

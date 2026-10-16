@@ -132,7 +132,7 @@ impl Drop for Buffer {
         }
     }
 }
-#[repr(C)]
+#[repr(C, align(64))]
 #[derive(Default)]
 struct Client {
     input: Buffer,
@@ -144,6 +144,7 @@ struct Client {
     state: u32,
 }
 const _: () = assert!(std::mem::size_of::<Client>() == 64);
+const _: () = assert!(std::mem::align_of::<Client>() == 64);
 
 struct Mapping {
     ptr: NonNull<u8>,
@@ -503,7 +504,13 @@ impl Worker {
                     let status = app.serve(&req, &mut self.body);
                     let index = self.dirty(fd);
                     self.output(fd);
-                    response(status, &self.body, req.close, &mut self.clients[fd].output);
+                    response_with_type(
+                        status,
+                        &self.body,
+                        req.close,
+                        &mut self.clients[fd].output,
+                        crate::demo::content_type(&req, status),
+                    );
                     self.pending[index].count += 1;
                     count += 1;
                     offset += req.consumed;
@@ -810,6 +817,15 @@ impl Worker {
     }
 }
 fn response(status: u16, body: &[u8], close: bool, out: &mut Buffer) {
+    response_with_type(status, body, close, out, b"application/json");
+}
+fn response_with_type(
+    status: u16,
+    body: &[u8],
+    close: bool,
+    out: &mut Buffer,
+    content_type: &[u8],
+) {
     out.extend(match status {
         200 => b"HTTP/1.1 200 OK\r\n",
         201 => b"HTTP/1.1 201 Created\r\n",
@@ -819,7 +835,9 @@ fn response(status: u16, body: &[u8], close: bool, out: &mut Buffer) {
         503 => b"HTTP/1.1 503 Service Unavailable\r\n",
         _ => b"HTTP/1.1 500 Internal Server Error\r\n",
     });
-    out.extend(b"Content-Type: application/json\r\nContent-Length: ");
+    out.extend(b"X-Content-Type-Options: nosniff\r\nCache-Control: no-store\r\nContent-Type: ");
+    out.extend(content_type);
+    out.extend(b"\r\nContent-Length: ");
     out.extend(itoa::Buffer::new().format(body.len()).as_bytes());
     out.extend(if close {
         b"\r\nConnection: close\r\n\r\n"

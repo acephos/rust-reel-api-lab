@@ -8,3 +8,6 @@
 *.db-shm
 third_party/challenge/seed/tsv/
 third_party/challenge/seed/tokens.json
+/third_party/challenge/seed/*.db*
+*.pyc
+__pycache__/
