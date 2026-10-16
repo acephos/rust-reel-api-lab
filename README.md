@@ -51,10 +51,10 @@ Custom HTTP/1.1, keep-alive/pipelining/chunked framing; io_uring shared completi
 bash scripts/check-upstream.sh
 bash scripts/check-upstream.sh --epoll
 python3 tests/functional.py --seed third_party/challenge/seed/feed.db \
-  --server target/release/twelve-rust-poll --backend both --output docs/proof/functional.json
+  --server target/release/twelve-rust-poll --backend both --output docs/proof/functional-final.json
 ```
 
-The upstream suite checks42 exact responses against a fresh full dataset. Additional checks exercise Unicode, authentication, framing, fragmented/pipelined traffic, slow clients, connection churn, live mutations and process-kill recovery. Tests use disposable copies. Results/review: [functional evidence](docs/proof/functional.json), [review](docs/review.md).
+The upstream suite checks42 exact responses against a fresh full dataset. Additional checks exercise Unicode, authentication, framing, fragmented/pipelined traffic, slow clients, connection churn, live mutations and process-kill recovery. Tests use disposable copies. Results/review: [functional evidence](docs/proof/functional-final.json), [review](docs/review.md).
 
 Capacity evidence and exact commands are in [the machine-specific proof](docs/proof/README.md) and [benchmark tooling guide](bench/README.md). These are co-located loopback measurements, with the generator sharing this laptop's resources. Virtual users with think time, established sockets, outstanding requests and requests/second are distinct. Five-minute passes demonstrate the stated tested load; they do not establish an absolute maximum or production/Internet capacity. The reel's64,000-user result is not this project's measurement.
 

@@ -24,9 +24,15 @@ jobs:
         run: bash scripts/check-upstream.sh --epoll && python3 tests/functional.py --seed third_party/challenge/seed/feed.db --server target/release/twelve-rust-poll --backend epoll
       - name: io_uring kernel availability
         run: |
-          if [ "$(cat /proc/sys/kernel/io_uring_disabled)" != 0 ]; then
-            echo 'Hosted kernel disables io_uring; optimized backend verified in local proof artifacts.'
-          else
+          set +e
+          python3 scripts/probe-io-uring.py
+          probe=$?
+          set -e
+          if [ "$probe" = 0 ]; then
             bash scripts/check-upstream.sh
             python3 tests/functional.py --seed third_party/challenge/seed/feed.db --server target/release/twelve-rust-poll --backend uring
+          elif [ "$probe" = 77 ]; then
+            echo 'Hosted sandbox cannot create io_uring; see local proof for optimized-backend validation.'
+          else
+            exit "$probe"
           fi
