@@ -266,6 +266,9 @@ pub enum Parsed<'a> {
     Incomplete { expect_continue: bool },
     Complete(Frame<'a>),
 }
+// Every invalid frame has the same public 400/close behavior; no error detail
+// crosses this internal parser boundary.
+#[allow(clippy::result_unit_err)]
 pub fn frame(input: &[u8]) -> Result<Parsed<'_>, ()> {
     let mut headers = [httparse::EMPTY_HEADER; 64];
     let mut req = httparse::Request::new(&mut headers);
@@ -400,10 +403,10 @@ impl App {
     fn serve(&mut self, frame: &Frame<'_>, out: &mut Vec<u8>) -> u16 {
         let path = frame.path.split('?').next().unwrap_or(frame.path);
         if frame.method == "GET" {
-            if let Some(demo) = &self.demo {
-                if let Some(status) = demo.serve(path, out) {
-                    return status;
-                }
+            if let Some(demo) = &self.demo
+                && let Some(status) = demo.serve(path, out)
+            {
+                return status;
             }
             if path == "/feed" {
                 return self.db.read(None, out);

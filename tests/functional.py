@@ -250,9 +250,14 @@ class Fixture:
                    jwt(good, alg="HS512"), jwt(dict(good, exp=1)),
                    jwt(dict(good, exp="tomorrow")), jwt(dict(good, nbf=int(time.time()) + 3600)),
                    jwt({k: v for k, v in good.items() if k != "exp"}),
-                   "a.b.c", "", self.token + ".extra", jwt([1, 2])]
+                   "a.b.c", self.token + ".extra", jwt([1, 2])]
         for token in invalid:
             self.expect_error({"body": "should fail"}, 401, "invalid or expired token", token)
+        # RFC 9112 section 5.1 excludes trailing OWS from the field value:
+        # "Authorization: Bearer " is parsed as "Bearer", which lacks the
+        # spec's required "Bearer " prefix. This is a missing credential,
+        # whereas a nonempty malformed JWT above is invalid/expired.
+        self.expect_error({"body": "should fail"}, 401, "missing bearer token", "")
         payloads = [dict(good, sub=value) for value in [0, "0", "-1", "1.2", "abc", None]]
         payloads += [dict(good, username=value) for value in [12, None, [], {}]]
         payloads += [{k: v for k, v in good.items() if k != name} for name in ["sub", "username"]]
@@ -265,7 +270,8 @@ class Fixture:
         status, value = self.request("POST", "/posts", {"body": "token author"}, jwt(escaped))
         check(status == 201 and value["post"]["author"] == escaped["username"],
               "creation author must use the signed token username")
-        return {"invalid_jwts": len(invalid), "invalid_payloads": len(payloads)}
+        return {"invalid_jwts": len(invalid), "invalid_payloads": len(payloads),
+                "empty_bearer_after_HTTP_OWS_normalization": "missing bearer token"}
 
     def live_reads_and_likes(self):
         post = self.create("live update from the first HTTP connection")

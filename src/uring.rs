@@ -740,14 +740,14 @@ impl Worker {
                 .ring
                 .submitter()
                 .submit_with_args(wait, &types::SubmitArgs::new().timespec(&timeout));
-            if let Err(e) = result {
-                if !matches!(
+            if let Err(e) = result
+                && !matches!(
                     e.raw_os_error(),
                     Some(libc::ETIME | libc::EINTR | libc::EAGAIN | libc::EBUSY)
-                ) {
-                    eprintln!("io_uring: {e}");
-                    std::process::exit(1);
-                }
+                )
+            {
+                eprintln!("io_uring: {e}");
+                std::process::exit(1);
             }
             self.now = self.start.elapsed().as_secs() as u32;
             self.completions.clear();

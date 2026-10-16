@@ -277,10 +277,10 @@ impl Db {
         if !self.begin() {
             return crate::error(out, 500, "internal server error");
         }
-        if id.is_none() {
-            if let Some(status) = self.range_feed(out) {
-                return status;
-            }
+        if id.is_none()
+            && let Some(status) = self.range_feed(out)
+        {
+            return status;
         }
         let stmt = if let Some(id) = id {
             self.post.bind_int(1, id);
