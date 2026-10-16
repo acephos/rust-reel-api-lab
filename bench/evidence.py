@@ -203,7 +203,7 @@ def report(args):
         a, b = sorted(begin), sorted(end)
         if not a:
             return {'started': 0, 'finished': len(b), 'peak': 0, 'mean': None}
-        i = j = current = peak = 0
+        i = j = current = peak = minimum = 0
         exposure = 0.0
         previous = first = min(a[0], b[0] if b else a[0])
         while i < len(a) or j < len(b):
@@ -213,18 +213,20 @@ def report(args):
             exposure += current * (now - previous)
             current += 1 if start else -1
             peak = max(peak, current)
+            minimum = min(minimum, current)
             if start:
                 i += 1
             else:
                 j += 1
             previous = now
         return {'started': len(a), 'finished': len(b), 'unfinished': current, 'peak': peak,
+                'minimum': minimum,
                 'mean_over_first_start_to_last_event': exposure / (previous - first) if previous > first else None,
                 'observed_span_seconds': previous - first}
     exit_code = int((directory / 'exit-code').read_text())
     all_concurrency = concurrency(starts, finishes)
     hold_concurrency = concurrency(hold_starts, hold_finishes)
-    complete = len(starts) == len(finishes) and len(starts) > 0
+    complete = len(starts) == len(finishes) and len(starts) > 0 and all_concurrency['minimum'] >= 0
     settings = json.loads((directory / 'machine.json').read_text())['settings']
     import re
     match = re.fullmatch(r'(\d+(?:\.\d+)?)(ms|s|m|h)', settings['DURATION'])
