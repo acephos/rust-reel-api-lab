@@ -56,6 +56,7 @@ def load_run(path):
         'server_rss_peak_bytes': resource('server', 'rss_bytes', max),
         'generator_cpu_mean_percent_one_core': resource('client', 'cpu_percent_one_core', statistics.mean),
         'generator_rss_peak_bytes': resource('client', 'rss_bytes', max),
+        'resource_sampling_scope': 'All sampled phases, including ramp and drain; CPU100% means one logical core.',
         'source_commit': machine['git']['stdout'].strip(),
         'binary_sha256': machine['server_executable_sha256'],
         'artifact_path': str(folder.resolve().relative_to(Path.cwd().resolve())),
@@ -83,12 +84,19 @@ parser = argparse.ArgumentParser(description=__doc__)
 parser.add_argument('--active', required=True)
 parser.add_argument('--users', required=True)
 parser.add_argument('--open', required=True)
+parser.add_argument('--warmup', help='Defaults to original-warmup alongside the users run')
 parser.add_argument('--repo', default='https://github.com/acephos/rust-reel-api-lab')
 args = parser.parse_args()
 a, u, o = [load_run(getattr(args, name)) for name in ['active', 'users', 'open']]
-assert [a['mode'], u['mode'], o['mode']] == ['active', 'original', 'open'], 'Incorrect workload modes'
-assert a['duration_s'] >= 300 and u['duration_s'] >= 300, 'Require real five-minute holds'
-assert a['binary_sha256'] == u['binary_sha256'] == o['binary_sha256'], 'Different binaries require separate reports'
+w = load_run(args.warmup or Path(args.users).with_name('original-warmup'))
+if [a['mode'], u['mode'], o['mode'], w['mode']] != ['active', 'original', 'open', 'original']:
+    raise ValueError('Incorrect workload modes')
+if a['duration_s'] < 300 or u['duration_s'] < 300:
+    raise ValueError('Require real five-minute holds')
+if w['duration_s'] != 120 or w['vus'] != 1000:
+    raise ValueError('Require the recorded1,000-user/two-minute warm-up')
+if len({run['binary_sha256'] for run in [a, u, o, w]}) != 1:
+    raise ValueError('Different binaries require separate reports')
 notes = [
     'Single-machine loopback measurements on Ryzen 5 5600H (6 cores / 12 threads), Linux 7.2.5. The load generator shares CPU, memory, disk and network stack with the API.',
     'Active: no think time; rotation is 25% feed, 25% post, 25% like, 25% create. Original browsing: upstream think times, 15% like and 2% create chances per user loop.',
@@ -101,7 +109,7 @@ notes = [
 ]
 report = {'status': 'complete', 'generated_utc': datetime.now(timezone.utc).isoformat(),
           'repo_url': args.repo, 'machine': {'cpu': 'AMD Ryzen 5 5600H · 6 cores / 12 threads', 'memory_gib': 30.70},
-          'active': a, 'users': u, 'open': o, 'notes': notes}
+          'active': a, 'users': u, 'open': o, 'warmup': w, 'notes': notes}
 out = Path('docs/proof'); out.mkdir(parents=True, exist_ok=True)
 (out / 'demo.json').write_text(json.dumps(report, indent=2) + '\n')
 rows = []
@@ -143,6 +151,7 @@ Exact run settings, tool/source/binary checksums, actual process argv/allowliste
 - Active hold: [{a['artifact_path']}]({('../../' + a['artifact_path'])})
 - Original hold: [{u['artifact_path']}]({('../../' + u['artifact_path'])})
 - Open confirmation: [{o['artifact_path']}]({('../../' + o['artifact_path'])})
+- Separate browsing warm-up: [{w['artifact_path']}]({('../../' + w['artifact_path'])})
 - [Exploratory ladder](../../proof/runs/ladder/), [initial failed validator smoke](../../proof/runs/smoke/), [corrected smoke](../../proof/runs/smoke-fixed/), [validator diagnosis](benchmark-validation.md)
 - Binary SHA256: `{a['binary_sha256']}`. Rust1.98.1, native CPU flags, fatLTO, SQLite3.53.4 PGO.
 
