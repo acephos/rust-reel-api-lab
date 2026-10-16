@@ -1,0 +1,5 @@
+  users.tsv: 50,000 rows
+  posts.tsv: 500,000 rows
+  likes.tsv: 2,016,005 rows
+  tokens.json: 20,000 tokens (JWT_SECRET=twelve-dollar-challenge)
+OK: /home/ace/.t3/scratch/2026-10-16-https-www-instagram-com-reel-19f08710/third_party/challenge/seed/feed.db (238M), content sha256 matches

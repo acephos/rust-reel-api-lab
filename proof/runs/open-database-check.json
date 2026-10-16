@@ -1,0 +1,27 @@
+{
+  "seed_counts": {
+    "users": 50000,
+    "posts": 500000,
+    "likes": 2016005
+  },
+  "persisted_counts": {
+    "users": 50000,
+    "posts": 575002,
+    "likes": 2090999
+  },
+  "expected_counts": {
+    "users": 50000,
+    "posts": 575002,
+    "likes": 2090999
+  },
+  "all_acknowledged_creates": 75002,
+  "all_acknowledged_first_likes": 74994,
+  "integrity_check": [
+    "ok"
+  ],
+  "foreign_key_check": [],
+  "schema_sha256": "0462af3198b949ce6173f5a15e1db9a15a7267ba980cde30706cd8a7289617c8",
+  "schema_unchanged": true,
+  "passed": true,
+  "scope": "Persisted row-count reconciliation after process stop, not power-loss durability."
+}

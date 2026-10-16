@@ -1,0 +1,49 @@
+{
+  "k6_exit_code": 0,
+  "passed_k6_thresholds": true,
+  "complete_request_accounting": true,
+  "passed_all_checks": true,
+  "counts": {
+    "hold": {
+      "http_request_events": 124528,
+      "validated_successes": 124528
+    },
+    "statuses": {
+      "200": 70069,
+      "201": 54459
+    },
+    "endpoints": {
+      "like": 31125,
+      "post": 31131,
+      "feed": 31137,
+      "create": 31135
+    }
+  },
+  "configured_hold_seconds": 15.0,
+  "hold_started_validated_successes_per_configured_second": 8301.866666666667,
+  "client_outstanding_all_phases": {
+    "started": 124528,
+    "finished": 124528,
+    "unfinished": 0,
+    "peak": 256,
+    "minimum": 0,
+    "mean_over_first_start_to_last_event": 253.14604754517998,
+    "observed_span_seconds": 15.022234201431274
+  },
+  "client_outstanding_requests_started_in_hold": {
+    "started": 124528,
+    "finished": 124528,
+    "unfinished": 0,
+    "peak": 256,
+    "minimum": 0,
+    "mean_over_first_start_to_last_event": 253.14604754517998,
+    "observed_span_seconds": 15.022234201431274
+  },
+  "concurrency_definition": "Start to full body consumption and semantic validation; includes client connection/pool waits. Hold classification is based on request start, and includes its drain.",
+  "limitations": [
+    "Peak timestamp resolution is k6 metric emission precision; exact timestamp ties complete before starts.",
+    "Fixed VUs and TCP connections are not simultaneous server handler execution.",
+    "k6 arrival model reports scheduling drops; it does not supply wrk2 schedule-corrected latency.",
+    "An interrupted request may have a start event without an end; unfinished counts remain visible."
+  ]
+}

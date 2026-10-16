@@ -1,0 +1,414 @@
+
+         /\      Grafana   /‾‾/  
+    /\  /  \     |\  __   /  /   
+   /  \/    \    | |/ /  /   ‾‾\ 
+  /          \   |   (  |  (‾)  |
+ / __________ \  |_|\_\  \_____/ 
+
+
+     execution: local
+        script: bench/load.js
+        output: json (/home/ace/.t3/scratch/2026-10-16-https-www-instagram-com-reel-19f08710/.tools/benchmark-raw/original-warmup-2241653/raw.json.gz)
+
+     scenarios: (100.00%) 1 scenario, 1000 max VUs, 2m12s max duration (incl. graceful stop):
+              * load: Up to 1000 looping VUs for 2m2s over 3 stages (gracefulRampDown: 10s, gracefulStop: 10s)
+
+
+running (0m00.8s), 0825/1000 VUs, 0 complete and 0 interrupted iterations
+load   [   1% ] 0825/1000 VUs  0m00.8s/2m02.0s
+
+running (0m01.8s), 1000/1000 VUs, 0 complete and 0 interrupted iterations
+load   [   1% ] 1000/1000 VUs  0m01.8s/2m02.0s
+
+running (0m02.8s), 1000/1000 VUs, 0 complete and 0 interrupted iterations
+load   [   2% ] 1000/1000 VUs  0m02.8s/2m02.0s
+
+running (0m03.8s), 1000/1000 VUs, 0 complete and 0 interrupted iterations
+load   [   3% ] 1000/1000 VUs  0m03.8s/2m02.0s
+
+running (0m04.8s), 1000/1000 VUs, 0 complete and 0 interrupted iterations
+load   [   4% ] 1000/1000 VUs  0m04.8s/2m02.0s
+
+running (0m05.8s), 1000/1000 VUs, 0 complete and 0 interrupted iterations
+load   [   5% ] 1000/1000 VUs  0m05.8s/2m02.0s
+
+running (0m06.8s), 1000/1000 VUs, 0 complete and 0 interrupted iterations
+load   [   6% ] 1000/1000 VUs  0m06.8s/2m02.0s
+
+running (0m07.8s), 1000/1000 VUs, 0 complete and 0 interrupted iterations
+load   [   6% ] 1000/1000 VUs  0m07.8s/2m02.0s
+
+running (0m08.8s), 1000/1000 VUs, 0 complete and 0 interrupted iterations
+load   [   7% ] 1000/1000 VUs  0m08.8s/2m02.0s
+
+running (0m09.8s), 1000/1000 VUs, 0 complete and 0 interrupted iterations
+load   [   8% ] 1000/1000 VUs  0m09.8s/2m02.0s
+
+running (0m10.8s), 1000/1000 VUs, 0 complete and 0 interrupted iterations
+load   [   9% ] 1000/1000 VUs  0m10.8s/2m02.0s
+
+running (0m11.8s), 1000/1000 VUs, 0 complete and 0 interrupted iterations
+load   [  10% ] 1000/1000 VUs  0m11.8s/2m02.0s
+
+running (0m12.8s), 1000/1000 VUs, 1 complete and 0 interrupted iterations
+load   [  11% ] 1000/1000 VUs  0m12.8s/2m02.0s
+
+running (0m13.8s), 1000/1000 VUs, 2 complete and 0 interrupted iterations
+load   [  11% ] 1000/1000 VUs  0m13.8s/2m02.0s
+
+running (0m14.8s), 1000/1000 VUs, 10 complete and 0 interrupted iterations
+load   [  12% ] 1000/1000 VUs  0m14.8s/2m02.0s
+
+running (0m15.8s), 1000/1000 VUs, 17 complete and 0 interrupted iterations
+load   [  13% ] 1000/1000 VUs  0m15.8s/2m02.0s
+
+running (0m16.8s), 1000/1000 VUs, 35 complete and 0 interrupted iterations
+load   [  14% ] 1000/1000 VUs  0m16.8s/2m02.0s
+
+running (0m17.8s), 1000/1000 VUs, 70 complete and 0 interrupted iterations
+load   [  15% ] 1000/1000 VUs  0m17.8s/2m02.0s
+
+running (0m18.8s), 1000/1000 VUs, 109 complete and 0 interrupted iterations
+load   [  15% ] 1000/1000 VUs  0m18.8s/2m02.0s
+
+running (0m19.8s), 1000/1000 VUs, 167 complete and 0 interrupted iterations
+load   [  16% ] 1000/1000 VUs  0m19.8s/2m02.0s
+
+running (0m20.8s), 1000/1000 VUs, 251 complete and 0 interrupted iterations
+load   [  17% ] 1000/1000 VUs  0m20.8s/2m02.0s
+
+running (0m21.8s), 1000/1000 VUs, 353 complete and 0 interrupted iterations
+load   [  18% ] 1000/1000 VUs  0m21.8s/2m02.0s
+
+running (0m22.8s), 1000/1000 VUs, 443 complete and 0 interrupted iterations
+load   [  19% ] 1000/1000 VUs  0m22.8s/2m02.0s
+
+running (0m23.8s), 1000/1000 VUs, 536 complete and 0 interrupted iterations
+load   [  20% ] 1000/1000 VUs  0m23.8s/2m02.0s
+
+running (0m24.8s), 1000/1000 VUs, 626 complete and 0 interrupted iterations
+load   [  20% ] 1000/1000 VUs  0m24.8s/2m02.0s
+
+running (0m25.8s), 1000/1000 VUs, 717 complete and 0 interrupted iterations
+load   [  21% ] 1000/1000 VUs  0m25.8s/2m02.0s
+
+running (0m26.8s), 1000/1000 VUs, 788 complete and 0 interrupted iterations
+load   [  22% ] 1000/1000 VUs  0m26.8s/2m02.0s
+
+running (0m27.8s), 1000/1000 VUs, 869 complete and 0 interrupted iterations
+load   [  23% ] 1000/1000 VUs  0m27.8s/2m02.0s
+
+running (0m28.8s), 1000/1000 VUs, 913 complete and 0 interrupted iterations
+load   [  24% ] 1000/1000 VUs  0m28.8s/2m02.0s
+
+running (0m29.8s), 1000/1000 VUs, 956 complete and 0 interrupted iterations
+load   [  24% ] 1000/1000 VUs  0m29.8s/2m02.0s
+
+running (0m30.8s), 1000/1000 VUs, 983 complete and 0 interrupted iterations
+load   [  25% ] 1000/1000 VUs  0m30.8s/2m02.0s
+
+running (0m31.8s), 1000/1000 VUs, 997 complete and 0 interrupted iterations
+load   [  26% ] 1000/1000 VUs  0m31.8s/2m02.0s
+
+running (0m32.8s), 1000/1000 VUs, 1015 complete and 0 interrupted iterations
+load   [  27% ] 1000/1000 VUs  0m32.8s/2m02.0s
+
+running (0m33.8s), 1000/1000 VUs, 1026 complete and 0 interrupted iterations
+load   [  28% ] 1000/1000 VUs  0m33.8s/2m02.0s
+
+running (0m34.8s), 1000/1000 VUs, 1037 complete and 0 interrupted iterations
+load   [  29% ] 1000/1000 VUs  0m34.8s/2m02.0s
+
+running (0m35.8s), 1000/1000 VUs, 1053 complete and 0 interrupted iterations
+load   [  29% ] 1000/1000 VUs  0m35.8s/2m02.0s
+
+running (0m36.8s), 1000/1000 VUs, 1088 complete and 0 interrupted iterations
+load   [  30% ] 1000/1000 VUs  0m36.8s/2m02.0s
+
+running (0m37.8s), 1000/1000 VUs, 1117 complete and 0 interrupted iterations
+load   [  31% ] 1000/1000 VUs  0m37.8s/2m02.0s
+
+running (0m38.8s), 1000/1000 VUs, 1164 complete and 0 interrupted iterations
+load   [  32% ] 1000/1000 VUs  0m38.8s/2m02.0s
+
+running (0m39.8s), 1000/1000 VUs, 1212 complete and 0 interrupted iterations
+load   [  33% ] 1000/1000 VUs  0m39.8s/2m02.0s
+
+running (0m40.8s), 1000/1000 VUs, 1267 complete and 0 interrupted iterations
+load   [  33% ] 1000/1000 VUs  0m40.8s/2m02.0s
+
+running (0m41.8s), 1000/1000 VUs, 1333 complete and 0 interrupted iterations
+load   [  34% ] 1000/1000 VUs  0m41.8s/2m02.0s
+
+running (0m42.8s), 1000/1000 VUs, 1411 complete and 0 interrupted iterations
+load   [  35% ] 1000/1000 VUs  0m42.8s/2m02.0s
+
+running (0m43.8s), 1000/1000 VUs, 1481 complete and 0 interrupted iterations
+load   [  36% ] 1000/1000 VUs  0m43.8s/2m02.0s
+
+running (0m44.8s), 1000/1000 VUs, 1557 complete and 0 interrupted iterations
+load   [  37% ] 1000/1000 VUs  0m44.8s/2m02.0s
+
+running (0m45.8s), 1000/1000 VUs, 1632 complete and 0 interrupted iterations
+load   [  38% ] 1000/1000 VUs  0m45.8s/2m02.0s
+
+running (0m46.8s), 1000/1000 VUs, 1701 complete and 0 interrupted iterations
+load   [  38% ] 1000/1000 VUs  0m46.8s/2m02.0s
+
+running (0m47.8s), 1000/1000 VUs, 1763 complete and 0 interrupted iterations
+load   [  39% ] 1000/1000 VUs  0m47.8s/2m02.0s
+
+running (0m48.8s), 1000/1000 VUs, 1822 complete and 0 interrupted iterations
+load   [  40% ] 1000/1000 VUs  0m48.8s/2m02.0s
+
+running (0m49.8s), 1000/1000 VUs, 1881 complete and 0 interrupted iterations
+load   [  41% ] 1000/1000 VUs  0m49.8s/2m02.0s
+
+running (0m50.8s), 1000/1000 VUs, 1920 complete and 0 interrupted iterations
+load   [  42% ] 1000/1000 VUs  0m50.8s/2m02.0s
+
+running (0m51.8s), 1000/1000 VUs, 1967 complete and 0 interrupted iterations
+load   [  42% ] 1000/1000 VUs  0m51.8s/2m02.0s
+
+running (0m52.8s), 1000/1000 VUs, 1991 complete and 0 interrupted iterations
+load   [  43% ] 1000/1000 VUs  0m52.8s/2m02.0s
+
+running (0m53.8s), 1000/1000 VUs, 2023 complete and 0 interrupted iterations
+load   [  44% ] 1000/1000 VUs  0m53.8s/2m02.0s
+
+running (0m54.8s), 1000/1000 VUs, 2045 complete and 0 interrupted iterations
+load   [  45% ] 1000/1000 VUs  0m54.8s/2m02.0s
+
+running (0m55.8s), 1000/1000 VUs, 2077 complete and 0 interrupted iterations
+load   [  46% ] 1000/1000 VUs  0m55.8s/2m02.0s
+
+running (0m56.8s), 1000/1000 VUs, 2118 complete and 0 interrupted iterations
+load   [  47% ] 1000/1000 VUs  0m56.8s/2m02.0s
+
+running (0m57.8s), 1000/1000 VUs, 2150 complete and 0 interrupted iterations
+load   [  47% ] 1000/1000 VUs  0m57.8s/2m02.0s
+
+running (0m58.8s), 1000/1000 VUs, 2189 complete and 0 interrupted iterations
+load   [  48% ] 1000/1000 VUs  0m58.8s/2m02.0s
+
+running (0m59.8s), 1000/1000 VUs, 2234 complete and 0 interrupted iterations
+load   [  49% ] 1000/1000 VUs  0m59.8s/2m02.0s
+
+running (1m00.8s), 1000/1000 VUs, 2278 complete and 0 interrupted iterations
+load   [  50% ] 1000/1000 VUs  1m00.8s/2m02.0s
+
+running (1m01.8s), 1000/1000 VUs, 2338 complete and 0 interrupted iterations
+load   [  51% ] 1000/1000 VUs  1m01.8s/2m02.0s
+
+running (1m02.8s), 1000/1000 VUs, 2398 complete and 0 interrupted iterations
+load   [  51% ] 1000/1000 VUs  1m02.8s/2m02.0s
+
+running (1m03.8s), 1000/1000 VUs, 2460 complete and 0 interrupted iterations
+load   [  52% ] 1000/1000 VUs  1m03.8s/2m02.0s
+
+running (1m04.8s), 1000/1000 VUs, 2519 complete and 0 interrupted iterations
+load   [  53% ] 1000/1000 VUs  1m04.8s/2m02.0s
+
+running (1m05.8s), 1000/1000 VUs, 2576 complete and 0 interrupted iterations
+load   [  54% ] 1000/1000 VUs  1m05.8s/2m02.0s
+
+running (1m06.8s), 1000/1000 VUs, 2638 complete and 0 interrupted iterations
+load   [  55% ] 1000/1000 VUs  1m06.8s/2m02.0s
+
+running (1m07.8s), 1000/1000 VUs, 2692 complete and 0 interrupted iterations
+load   [  56% ] 1000/1000 VUs  1m07.8s/2m02.0s
+
+running (1m08.8s), 1000/1000 VUs, 2749 complete and 0 interrupted iterations
+load   [  56% ] 1000/1000 VUs  1m08.8s/2m02.0s
+
+running (1m09.8s), 1000/1000 VUs, 2808 complete and 0 interrupted iterations
+load   [  57% ] 1000/1000 VUs  1m09.8s/2m02.0s
+
+running (1m10.8s), 1000/1000 VUs, 2859 complete and 0 interrupted iterations
+load   [  58% ] 1000/1000 VUs  1m10.8s/2m02.0s
+
+running (1m11.8s), 1000/1000 VUs, 2903 complete and 0 interrupted iterations
+load   [  59% ] 1000/1000 VUs  1m11.8s/2m02.0s
+
+running (1m12.8s), 1000/1000 VUs, 2953 complete and 0 interrupted iterations
+load   [  60% ] 1000/1000 VUs  1m12.8s/2m02.0s
+
+running (1m13.8s), 1000/1000 VUs, 3005 complete and 0 interrupted iterations
+load   [  61% ] 1000/1000 VUs  1m13.8s/2m02.0s
+
+running (1m14.8s), 1000/1000 VUs, 3045 complete and 0 interrupted iterations
+load   [  61% ] 1000/1000 VUs  1m14.8s/2m02.0s
+
+running (1m15.8s), 1000/1000 VUs, 3087 complete and 0 interrupted iterations
+load   [  62% ] 1000/1000 VUs  1m15.8s/2m02.0s
+
+running (1m16.8s), 1000/1000 VUs, 3124 complete and 0 interrupted iterations
+load   [  63% ] 1000/1000 VUs  1m16.8s/2m02.0s
+
+running (1m17.8s), 1000/1000 VUs, 3163 complete and 0 interrupted iterations
+load   [  64% ] 1000/1000 VUs  1m17.8s/2m02.0s
+
+running (1m18.8s), 1000/1000 VUs, 3195 complete and 0 interrupted iterations
+load   [  65% ] 1000/1000 VUs  1m18.8s/2m02.0s
+
+running (1m19.8s), 1000/1000 VUs, 3240 complete and 0 interrupted iterations
+load   [  65% ] 1000/1000 VUs  1m19.8s/2m02.0s
+
+running (1m20.8s), 1000/1000 VUs, 3280 complete and 0 interrupted iterations
+load   [  66% ] 1000/1000 VUs  1m20.8s/2m02.0s
+
+running (1m21.8s), 1000/1000 VUs, 3322 complete and 0 interrupted iterations
+load   [  67% ] 1000/1000 VUs  1m21.8s/2m02.0s
+
+running (1m22.8s), 1000/1000 VUs, 3365 complete and 0 interrupted iterations
+load   [  68% ] 1000/1000 VUs  1m22.8s/2m02.0s
+
+running (1m23.8s), 1000/1000 VUs, 3418 complete and 0 interrupted iterations
+load   [  69% ] 1000/1000 VUs  1m23.8s/2m02.0s
+
+running (1m24.8s), 1000/1000 VUs, 3462 complete and 0 interrupted iterations
+load   [  70% ] 1000/1000 VUs  1m24.8s/2m02.0s
+
+running (1m25.8s), 1000/1000 VUs, 3541 complete and 0 interrupted iterations
+load   [  70% ] 1000/1000 VUs  1m25.8s/2m02.0s
+
+running (1m26.8s), 1000/1000 VUs, 3596 complete and 0 interrupted iterations
+load   [  71% ] 1000/1000 VUs  1m26.8s/2m02.0s
+
+running (1m27.8s), 1000/1000 VUs, 3654 complete and 0 interrupted iterations
+load   [  72% ] 1000/1000 VUs  1m27.8s/2m02.0s
+
+running (1m28.8s), 1000/1000 VUs, 3697 complete and 0 interrupted iterations
+load   [  73% ] 1000/1000 VUs  1m28.8s/2m02.0s
+
+running (1m29.8s), 1000/1000 VUs, 3762 complete and 0 interrupted iterations
+load   [  74% ] 1000/1000 VUs  1m29.8s/2m02.0s
+
+running (1m30.8s), 1000/1000 VUs, 3818 complete and 0 interrupted iterations
+load   [  74% ] 1000/1000 VUs  1m30.8s/2m02.0s
+
+running (1m31.8s), 1000/1000 VUs, 3868 complete and 0 interrupted iterations
+load   [  75% ] 1000/1000 VUs  1m31.8s/2m02.0s
+
+running (1m32.8s), 1000/1000 VUs, 3913 complete and 0 interrupted iterations
+load   [  76% ] 1000/1000 VUs  1m32.8s/2m02.0s
+
+running (1m33.8s), 1000/1000 VUs, 3962 complete and 0 interrupted iterations
+load   [  77% ] 1000/1000 VUs  1m33.8s/2m02.0s
+
+running (1m34.8s), 1000/1000 VUs, 4025 complete and 0 interrupted iterations
+load   [  78% ] 1000/1000 VUs  1m34.8s/2m02.0s
+
+running (1m35.8s), 1000/1000 VUs, 4068 complete and 0 interrupted iterations
+load   [  79% ] 1000/1000 VUs  1m35.8s/2m02.0s
+
+running (1m36.8s), 1000/1000 VUs, 4110 complete and 0 interrupted iterations
+load   [  79% ] 1000/1000 VUs  1m36.8s/2m02.0s
+
+running (1m37.8s), 1000/1000 VUs, 4151 complete and 0 interrupted iterations
+load   [  80% ] 1000/1000 VUs  1m37.8s/2m02.0s
+
+running (1m38.8s), 1000/1000 VUs, 4196 complete and 0 interrupted iterations
+load   [  81% ] 1000/1000 VUs  1m38.8s/2m02.0s
+
+running (1m39.8s), 1000/1000 VUs, 4233 complete and 0 interrupted iterations
+load   [  82% ] 1000/1000 VUs  1m39.8s/2m02.0s
+
+running (1m40.8s), 1000/1000 VUs, 4284 complete and 0 interrupted iterations
+load   [  83% ] 1000/1000 VUs  1m40.8s/2m02.0s
+
+running (1m41.8s), 1000/1000 VUs, 4332 complete and 0 interrupted iterations
+load   [  83% ] 1000/1000 VUs  1m41.8s/2m02.0s
+
+running (1m42.8s), 1000/1000 VUs, 4365 complete and 0 interrupted iterations
+load   [  84% ] 1000/1000 VUs  1m42.8s/2m02.0s
+
+running (1m43.8s), 1000/1000 VUs, 4418 complete and 0 interrupted iterations
+load   [  85% ] 1000/1000 VUs  1m43.8s/2m02.0s
+
+running (1m44.8s), 1000/1000 VUs, 4467 complete and 0 interrupted iterations
+load   [  86% ] 1000/1000 VUs  1m44.8s/2m02.0s
+
+running (1m45.8s), 1000/1000 VUs, 4510 complete and 0 interrupted iterations
+load   [  87% ] 1000/1000 VUs  1m45.8s/2m02.0s
+
+running (1m46.8s), 1000/1000 VUs, 4557 complete and 0 interrupted iterations
+load   [  88% ] 1000/1000 VUs  1m46.8s/2m02.0s
+
+running (1m47.8s), 1000/1000 VUs, 4621 complete and 0 interrupted iterations
+load   [  88% ] 1000/1000 VUs  1m47.8s/2m02.0s
+
+running (1m48.8s), 1000/1000 VUs, 4671 complete and 0 interrupted iterations
+load   [  89% ] 1000/1000 VUs  1m48.8s/2m02.0s
+
+running (1m49.8s), 1000/1000 VUs, 4721 complete and 0 interrupted iterations
+load   [  90% ] 1000/1000 VUs  1m49.8s/2m02.0s
+
+running (1m50.8s), 1000/1000 VUs, 4775 complete and 0 interrupted iterations
+load   [  91% ] 1000/1000 VUs  1m50.8s/2m02.0s
+
+running (1m51.8s), 1000/1000 VUs, 4833 complete and 0 interrupted iterations
+load   [  92% ] 1000/1000 VUs  1m51.8s/2m02.0s
+
+running (1m52.8s), 1000/1000 VUs, 4878 complete and 0 interrupted iterations
+load   [  92% ] 1000/1000 VUs  1m52.8s/2m02.0s
+
+running (1m53.8s), 1000/1000 VUs, 4934 complete and 0 interrupted iterations
+load   [  93% ] 1000/1000 VUs  1m53.8s/2m02.0s
+
+running (1m54.8s), 1000/1000 VUs, 4983 complete and 0 interrupted iterations
+load   [  94% ] 1000/1000 VUs  1m54.8s/2m02.0s
+
+running (1m55.8s), 1000/1000 VUs, 5021 complete and 0 interrupted iterations
+load   [  95% ] 1000/1000 VUs  1m55.8s/2m02.0s
+
+running (1m56.8s), 1000/1000 VUs, 5073 complete and 0 interrupted iterations
+load   [  96% ] 1000/1000 VUs  1m56.8s/2m02.0s
+
+running (1m57.8s), 1000/1000 VUs, 5119 complete and 0 interrupted iterations
+load   [  97% ] 1000/1000 VUs  1m57.8s/2m02.0s
+
+running (1m58.8s), 1000/1000 VUs, 5168 complete and 0 interrupted iterations
+load   [  97% ] 1000/1000 VUs  1m58.8s/2m02.0s
+
+running (1m59.8s), 1000/1000 VUs, 5209 complete and 0 interrupted iterations
+load   [  98% ] 1000/1000 VUs  1m59.8s/2m02.0s
+
+running (2m00.8s), 1000/1000 VUs, 5256 complete and 0 interrupted iterations
+load   [  99% ] 1000/1000 VUs  2m00.8s/2m02.0s
+
+running (2m01.8s), 0983/1000 VUs, 5301 complete and 0 interrupted iterations
+load   [ 100% ] 0983/1000 VUs  2m01.8s/2m02.0s
+
+running (2m02.8s), 0931/1000 VUs, 5355 complete and 0 interrupted iterations
+load ↓ [ 100% ] 0974/1000 VUs  2m2s
+
+running (2m03.8s), 0889/1000 VUs, 5397 complete and 0 interrupted iterations
+load ↓ [ 100% ] 0974/1000 VUs  2m2s
+
+running (2m04.8s), 0822/1000 VUs, 5464 complete and 0 interrupted iterations
+load ↓ [ 100% ] 0974/1000 VUs  2m2s
+
+running (2m05.8s), 0782/1000 VUs, 5504 complete and 0 interrupted iterations
+load ↓ [ 100% ] 0974/1000 VUs  2m2s
+
+running (2m06.8s), 0745/1000 VUs, 5541 complete and 0 interrupted iterations
+load ↓ [ 100% ] 0974/1000 VUs  2m2s
+
+running (2m07.8s), 0695/1000 VUs, 5591 complete and 0 interrupted iterations
+load ↓ [ 100% ] 0974/1000 VUs  2m2s
+
+running (2m08.8s), 0634/1000 VUs, 5652 complete and 0 interrupted iterations
+load ↓ [ 100% ] 0974/1000 VUs  2m2s
+
+running (2m09.8s), 0590/1000 VUs, 5696 complete and 0 interrupted iterations
+load ↓ [ 100% ] 0974/1000 VUs  2m2s
+
+running (2m10.8s), 0533/1000 VUs, 5753 complete and 0 interrupted iterations
+load ↓ [ 100% ] 0974/1000 VUs  2m2s
+
+running (2m11.8s), 0078/1000 VUs, 5786 complete and 422 interrupted iterations
+load ↓ [ 100% ] 0974/1000 VUs  2m2s
+
+running (2m12.0s), 0000/1000 VUs, 5786 complete and 500 interrupted iterations
+load ✓ [ 100% ] 0000/1000 VUs  2m2s

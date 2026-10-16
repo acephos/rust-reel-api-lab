@@ -1,0 +1,75 @@
+
+         /\      Grafana   /‾‾/  
+    /\  /  \     |\  __   /  /   
+   /  \/    \    | |/ /  /   ‾‾\ 
+  /          \   |   (  |  (‾)  |
+ / __________ \  |_|\_\  \_____/ 
+
+
+     execution: local
+        script: bench/load.js
+        output: json (/home/ace/.t3/scratch/2026-10-16-https-www-instagram-com-reel-19f08710/.tools/benchmark-raw/active-64-778240/raw.json.gz)
+
+     scenarios: (100.00%) 1 scenario, 64 max VUs, 25s max duration (incl. graceful stop):
+              * load: 64 looping VUs for 15s (gracefulStop: 10s)
+
+
+running (01.0s), 64/64 VUs, 6955 complete and 0 interrupted iterations
+load   [   7% ] 64 VUs  01.0s/15s
+
+running (02.0s), 64/64 VUs, 15018 complete and 0 interrupted iterations
+load   [  13% ] 64 VUs  02.0s/15s
+
+running (03.0s), 64/64 VUs, 23111 complete and 0 interrupted iterations
+load   [  20% ] 64 VUs  03.0s/15s
+
+running (04.0s), 64/64 VUs, 30468 complete and 0 interrupted iterations
+load   [  27% ] 64 VUs  04.0s/15s
+
+running (05.0s), 64/64 VUs, 38163 complete and 0 interrupted iterations
+load   [  33% ] 64 VUs  05.0s/15s
+
+running (06.0s), 64/64 VUs, 45129 complete and 0 interrupted iterations
+load   [  40% ] 64 VUs  06.0s/15s
+
+running (07.0s), 64/64 VUs, 52245 complete and 0 interrupted iterations
+load   [  47% ] 64 VUs  07.0s/15s
+
+running (08.0s), 64/64 VUs, 59791 complete and 0 interrupted iterations
+load   [  53% ] 64 VUs  08.0s/15s
+
+running (09.0s), 64/64 VUs, 66953 complete and 0 interrupted iterations
+load   [  60% ] 64 VUs  09.0s/15s
+
+running (10.0s), 64/64 VUs, 73403 complete and 0 interrupted iterations
+load   [  67% ] 64 VUs  10.0s/15s
+
+running (11.0s), 64/64 VUs, 81052 complete and 0 interrupted iterations
+load   [  73% ] 64 VUs  11.0s/15s
+
+running (12.0s), 64/64 VUs, 88271 complete and 0 interrupted iterations
+load   [  80% ] 64 VUs  12.0s/15s
+
+running (13.0s), 64/64 VUs, 95261 complete and 0 interrupted iterations
+load   [  87% ] 64 VUs  13.0s/15s
+
+running (14.0s), 64/64 VUs, 101582 complete and 0 interrupted iterations
+load   [  93% ] 64 VUs  14.0s/15s
+
+running (15.0s), 64/64 VUs, 109038 complete and 0 interrupted iterations
+load   [ 100% ] 64 VUs  15.0s/15s
+
+running (15.1s), 00/64 VUs, 109251 complete and 0 interrupted iterations
+load ✓ [ 100% ] 64 VUs  15s
+
+running (15.1s), 00/64 VUs, 109251 complete and 0 interrupted iterations
+load ✓ [ 100% ] 64 VUs  15s
+
+running (15.1s), 00/64 VUs, 109251 complete and 0 interrupted iterations
+load ✓ [ 100% ] 64 VUs  15s
+
+running (15.1s), 00/64 VUs, 109251 complete and 0 interrupted iterations
+load ✓ [ 100% ] 64 VUs  15s
+
+running (15.1s), 00/64 VUs, 109251 complete and 0 interrupted iterations
+load ✓ [ 100% ] 64 VUs  15s

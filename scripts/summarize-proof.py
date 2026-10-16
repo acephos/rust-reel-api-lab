@@ -63,7 +63,7 @@ def load_run(path):
         'server_cpu_mean_percent_one_core_request_period': resource('server', 'cpu_percent_one_core', statistics.mean, request_resources),
         'generator_cpu_mean_percent_one_core_request_period': resource('client', 'cpu_percent_one_core', statistics.mean, request_resources),
         'request_period_resource_scope': 'Samples within the first/last completion-second boundaries; includes ramp/drain when present and excludes the raw-export tail.',
-        'resource_sampling_scope': 'All sampled phases, including ramp, drain and raw-export tail; CPU100% means one logical core.',
+        'resource_sampling_scope': 'All sampled phases, including ramp, drain and raw-export tail; CPU 100% means one logical core.',
         'source_commit': machine['git']['stdout'].strip(),
         'binary_sha256': machine['server_executable_sha256'],
         'artifact_path': str(folder.resolve().relative_to(Path.cwd().resolve())),
@@ -101,7 +101,7 @@ if [a['mode'], u['mode'], o['mode'], w['mode']] != ['active', 'original', 'open'
 if a['duration_s'] < 300 or u['duration_s'] < 300:
     raise ValueError('Require real five-minute holds')
 if w['duration_s'] != 120 or w['vus'] != 1000:
-    raise ValueError('Require the recorded1,000-user/two-minute warm-up')
+    raise ValueError('Require the recorded 1,000-user/two-minute warm-up')
 if len({run['binary_sha256'] for run in [a, u, o, w]}) != 1:
     raise ValueError('Different binaries require separate reports')
 transport_path = Path('docs/proof/http-active.json')
@@ -124,12 +124,20 @@ notes = [
     'Latencies are full HTTP plus JSON validation, at 1-ms resolution, for requests started during the hold. Every endpoint also passes p95<500ms / p99<1000ms. Semantic and HTTP failures are zero.',
     'This is a demonstrated passing load, not an absolute maximum or an official droplet score. The generator is a material bottleneck; more server CPU headroom is not proof of a higher untested capacity.',
     'Open arrivals use k6 constant-arrival-rate and require zero drops. Latencies are not wrk2 planned-schedule-corrected; arrival accounting and any theoretical scheduling-boundary residual are retained.',
-    'Resource CPU means include all sampled phases and the raw-export tail after requests stop; inspect timestamped samples for the request-active window. CPU100% means one logical core.',
+    'Resource CPU means include all sampled phases and the raw-export tail after requests stop; inspect timestamped samples for the request-active window. CPU 100% means one logical core.',
     'Complete per-request gzip events are retained locally with SHA256 references. GitHub contains exact summaries, interval histograms, concurrency accounting and resource samples; large raw event streams are not published.',
 ]
+database_checks = {}
+for name, run in [('active', args.active), ('original', args.users), ('open', args.open)]:
+    check_path = Path(run).parent / f'{name}-database-check.json'
+    check = json.loads(check_path.read_text())
+    if check.get('passed') is not True or check['persisted_counts'] != check['expected_counts']:
+        raise ValueError(f'Persisted-write reconciliation failed: {check_path}')
+    database_checks[name] = check
 report = {'status': 'complete', 'generated_utc': datetime.now(timezone.utc).isoformat(),
           'repo_url': args.repo, 'machine': {'cpu': 'AMD Ryzen 5 5600H · 6 cores / 12 threads', 'memory_gib': 30.70},
-          'active': a, 'users': u, 'open': o, 'warmup': w, 'notes': notes}
+          'active': a, 'users': u, 'open': o, 'warmup': w,
+          'database_reconciliation': database_checks, 'notes': notes}
 out = Path('docs/proof'); out.mkdir(parents=True, exist_ok=True)
 (out / 'demo.json').write_text(json.dumps(report, indent=2) + '\n')
 rows = []
@@ -151,18 +159,21 @@ The [HTTP-only reconstruction](http-active.json) uses [k6's end timestamp and tr
 
 ## Acceptance fixed before testing
 
-Every returned body is decoded and checked for status, JSON field order/schema and endpoint meaning. Creates verify authored content, likes verify idempotence status, feed checks20 ordered posts with valid fields. All semantic checks and HTTP requests pass; every endpoint has coverage and full p95<500ms, p99<1000ms; open arrivals have zero drops. `passed_all_checks` additionally requires balanced start/finish counts and no unfinished requests. The corrected short smoke preceded the ladder. Tests use the full deterministic seed, not a tiny synthetic fixture.
+Every returned body is decoded and checked for status, JSON field order/schema and endpoint meaning. Creates verify authored content, likes verify idempotence status, feed checks 20 ordered posts with valid fields. All semantic checks and HTTP requests pass; every endpoint has coverage and full p95<500ms, p99<1000ms; open arrivals have zero drops. `passed_all_checks` additionally requires balanced start/finish counts and no unfinished requests. The corrected short smoke preceded the ladder. Tests use the full deterministic seed, not a tiny synthetic fixture.
 
-The separate functional proof passes the unchanged42 upstream checks on each backend and12 additional groups per backend. [Final extended result](functional-final.json), [io_uring exact checks](upstream-uring-final.log), [epoll exact checks](upstream-epoll-final.log), [Clippy](clippy.log). It verifies all acknowledged writes after SIGKILL; this is not power-loss durability.
+The separate functional proof passes the unchanged 42 upstream checks on each backend and 12 additional groups per backend. [Final extended result](functional-final.json), [io_uring exact checks](upstream-uring-final.log), [epoll exact checks](upstream-epoll-final.log), [Clippy](clippy.log). It verifies all acknowledged writes after SIGKILL; this is not power-loss durability.
+
+After stopping each load-test server, every acknowledged post creation and first-time like was reconciled with persisted row counts. SQLite integrity, foreign keys and unchanged schema also passed. Active: {database_checks['active']['all_acknowledged_creates']:,} posts / {database_checks['active']['all_acknowledged_first_likes']:,} first likes. Browsing including warm-up: {database_checks['original']['all_acknowledged_creates']:,} / {database_checks['original']['all_acknowledged_first_likes']:,}. Open: {database_checks['open']['all_acknowledged_creates']:,} / {database_checks['open']['all_acknowledged_first_likes']:,}. See the three `*-database-check.json` files under [the run artifacts](../../proof/runs/).
 
 ## Reproduce
 
-Follow the build/seed commands in [README](../../README.md). Start an io_uring server against a disposable fresh seed copy on127.0.0.1:3000 with the challenge secret and no demo configuration. Capture its actual PID. [Benchmark commands and metric definitions](../../bench/README.md). Execute runs sequentially; the server binaries must have the same checksum. The original-user run is preceded by a separately recorded1,000-VU/two-minute warm-up; its ramp and drain are separate from the300-second hold. Active/open runs have their own declared protocol; no CPU pinning or sysctl changes.
+Follow the build/seed commands in [README](../../README.md). Start an io_uring server against a disposable fresh seed copy on 127.0.0.1:3000 with the challenge secret and no demo configuration. Capture its actual PID. [Benchmark commands and metric definitions](../../bench/README.md). Execute runs sequentially; the server binaries must have the same checksum. The original-user run is preceded by a separately recorded 1,000-VU/two-minute warm-up; its ramp and drain are separate from the 300-second hold. Active/open runs have their own declared protocol; no CPU pinning or sysctl changes.
 
 ```bash
 SERVER_PID=<pid> BASE_URL=http://127.0.0.1:3000 MODE=active VUS={a['concurrency']} DURATION=5m OUT=proof/runs/active-hold scripts/benchmark.sh
 SERVER_PID=<pid> BASE_URL=http://127.0.0.1:3000 MODE=original VUS={u['vus']} RAMP_UP=60s DURATION=5m OUT=proof/runs/original-hold scripts/benchmark.sh
 SERVER_PID=<pid> BASE_URL=http://127.0.0.1:3000 MODE=open RATE={o['rate']} VUS=256 MAX_VUS=1024 DURATION=60s OUT=proof/runs/open-confirmation scripts/benchmark.sh
+python3 bench/http-concurrency.py --run proof/runs/active-hold --output docs/proof/http-active.json
 python3 scripts/summarize-proof.py --active proof/runs/active-hold --users proof/runs/original-hold --open proof/runs/open-confirmation
 ```
 
@@ -175,7 +186,7 @@ Exact run settings, tool/source/binary checksums, actual process argv/allowliste
 - Open confirmation: [{o['artifact_path']}]({('../../' + o['artifact_path'])})
 - Separate browsing warm-up: [{w['artifact_path']}]({('../../' + w['artifact_path'])})
 - [Exploratory ladder](../../proof/runs/ladder/), [initial failed validator smoke](../../proof/runs/smoke/), [corrected smoke](../../proof/runs/smoke-fixed/), [validator diagnosis](benchmark-validation.md)
-- Binary SHA256: `{a['binary_sha256']}`. Rust1.98.1, native CPU flags, fatLTO, SQLite3.53.4 PGO.
+- Binary SHA256: `{a['binary_sha256']}`. Rust 1.98.1, native CPU flags, fat LTO, SQLite 3.53.4 PGO.
 
 ## Practical limits
 

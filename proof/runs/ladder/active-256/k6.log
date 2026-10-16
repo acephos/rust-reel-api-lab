@@ -1,0 +1,81 @@
+
+         /\      Grafana   /‾‾/  
+    /\  /  \     |\  __   /  /   
+   /  \/    \    | |/ /  /   ‾‾\ 
+  /          \   |   (  |  (‾)  |
+ / __________ \  |_|\_\  \_____/ 
+
+
+     execution: local
+        script: bench/load.js
+        output: json (/home/ace/.t3/scratch/2026-10-16-https-www-instagram-com-reel-19f08710/.tools/benchmark-raw/active-256-818381/raw.json.gz)
+
+     scenarios: (100.00%) 1 scenario, 256 max VUs, 25s max duration (incl. graceful stop):
+              * load: 256 looping VUs for 15s (gracefulStop: 10s)
+
+
+running (01.0s), 256/256 VUs, 7982 complete and 0 interrupted iterations
+load   [   6% ] 256 VUs  01.0s/15s
+
+running (02.0s), 256/256 VUs, 16512 complete and 0 interrupted iterations
+load   [  13% ] 256 VUs  02.0s/15s
+
+running (03.0s), 256/256 VUs, 25588 complete and 0 interrupted iterations
+load   [  20% ] 256 VUs  03.0s/15s
+
+running (04.0s), 256/256 VUs, 34329 complete and 0 interrupted iterations
+load   [  26% ] 256 VUs  04.0s/15s
+
+running (05.0s), 256/256 VUs, 43314 complete and 0 interrupted iterations
+load   [  33% ] 256 VUs  05.0s/15s
+
+running (06.0s), 256/256 VUs, 51736 complete and 0 interrupted iterations
+load   [  40% ] 256 VUs  06.0s/15s
+
+running (07.0s), 256/256 VUs, 59906 complete and 0 interrupted iterations
+load   [  46% ] 256 VUs  07.0s/15s
+
+running (08.0s), 256/256 VUs, 67741 complete and 0 interrupted iterations
+load   [  53% ] 256 VUs  08.0s/15s
+
+running (09.0s), 256/256 VUs, 75016 complete and 0 interrupted iterations
+load   [  60% ] 256 VUs  09.0s/15s
+
+running (10.0s), 256/256 VUs, 82859 complete and 0 interrupted iterations
+load   [  66% ] 256 VUs  10.0s/15s
+
+running (11.0s), 256/256 VUs, 90691 complete and 0 interrupted iterations
+load   [  73% ] 256 VUs  11.0s/15s
+
+running (12.0s), 256/256 VUs, 98510 complete and 0 interrupted iterations
+load   [  80% ] 256 VUs  12.0s/15s
+
+running (13.0s), 256/256 VUs, 107930 complete and 0 interrupted iterations
+load   [  86% ] 256 VUs  13.0s/15s
+
+running (14.0s), 256/256 VUs, 115995 complete and 0 interrupted iterations
+load   [  93% ] 256 VUs  14.0s/15s
+
+running (15.0s), 256/256 VUs, 124145 complete and 0 interrupted iterations
+load   [ 100% ] 256 VUs  15.0s/15s
+
+running (15.0s), 000/256 VUs, 124528 complete and 0 interrupted iterations
+load ✓ [ 100% ] 256 VUs  15s
+
+running (15.0s), 000/256 VUs, 124528 complete and 0 interrupted iterations
+load ✓ [ 100% ] 256 VUs  15s
+
+running (15.0s), 000/256 VUs, 124528 complete and 0 interrupted iterations
+load ✓ [ 100% ] 256 VUs  15s
+
+running (15.0s), 000/256 VUs, 124528 complete and 0 interrupted iterations
+load ✓ [ 100% ] 256 VUs  15s
+
+running (15.0s), 000/256 VUs, 124528 complete and 0 interrupted iterations
+load ✓ [ 100% ] 256 VUs  15s
+
+running (15.0s), 000/256 VUs, 124528 complete and 0 interrupted iterations
+load ✓ [ 100% ] 256 VUs  15s
+
+running (15.0s), 000/256 VUs, 124528 complete and 0 interrupted iterations
+load ✓ [ 100% ] 256 VUs  15s

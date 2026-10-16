@@ -1,0 +1,264 @@
+{
+  "kind": "functional-proof",
+  "started_utc": "2026-10-16T05:47:13Z",
+  "server_sha256": "0d928cf5b9984533e536e5409ab9930c09049050e816234954d9cff727121797",
+  "kernel": "7.2.5-3-omarchy",
+  "backends": [
+    {
+      "backend": "uring",
+      "tests": [
+        {
+          "name": "unicode_and_json",
+          "evidence": {
+            "round_trip_cases": 5,
+            "boundary": "500 Unicode scalar values"
+          },
+          "passed": true,
+          "elapsed_s": 0.0121
+        },
+        {
+          "name": "jwt_validation",
+          "evidence": {
+            "invalid_jwts": 10,
+            "invalid_payloads": 12,
+            "empty_bearer_after_HTTP_OWS_normalization": "missing bearer token"
+          },
+          "passed": true,
+          "elapsed_s": 0.0108
+        },
+        {
+          "name": "live_reads_and_likes",
+          "evidence": {
+            "fresh_post_id": 500009,
+            "unique_likes": 2,
+            "repeat_likes": 4,
+            "read_model": "new HTTP connection after every acknowledged write"
+          },
+          "passed": true,
+          "elapsed_s": 0.0056
+        },
+        {
+          "name": "fragmented_request",
+          "evidence": {
+            "fragments": 36
+          },
+          "passed": true,
+          "elapsed_s": 0.0416
+        },
+        {
+          "name": "concurrent_like_idempotence",
+          "evidence": {
+            "requests": 64,
+            "client_threads": 32,
+            "inserted": 1,
+            "duplicates": 63
+          },
+          "passed": true,
+          "elapsed_s": 0.0319
+        },
+        {
+          "name": "pipeline_order",
+          "evidence": {
+            "pipelined_requests": 165,
+            "socket_reused": true,
+            "mixed_write_read_pipeline": true
+          },
+          "passed": true,
+          "elapsed_s": 0.0063
+        },
+        {
+          "name": "chunked_and_continue",
+          "evidence": {
+            "chunk_extensions": true,
+            "trailers": true,
+            "continue_handshake": true
+          },
+          "passed": true,
+          "elapsed_s": 0.0019
+        },
+        {
+          "name": "ambiguous_framing_rejected",
+          "evidence": {
+            "rejected_framing_variants": 6
+          },
+          "passed": true,
+          "elapsed_s": 0.0015
+        },
+        {
+          "name": "half_close",
+          "evidence": {
+            "complete_response_after_SHUT_WR": true
+          },
+          "passed": true,
+          "elapsed_s": 0.0004
+        },
+        {
+          "name": "slow_reader",
+          "evidence": {
+            "responses": 1024,
+            "verified_wire_bytes": 7141376,
+            "read_pause_ms": 250,
+            "short_send_events": "not instrumented"
+          },
+          "passed": true,
+          "elapsed_s": 0.3162
+        },
+        {
+          "name": "reset_churn",
+          "evidence": {
+            "reset_connections": 192,
+            "verified_fresh_connections": 64
+          },
+          "passed": true,
+          "elapsed_s": 0.0637
+        },
+        {
+          "name": "crash_recovery_and_schema",
+          "evidence": {
+            "acknowledged_posts_verified": 47,
+            "acknowledged_likes_verified": 36,
+            "signal": "SIGKILL",
+            "sqlite_integrity_check": "ok",
+            "foreign_key_check": "ok",
+            "schema_unchanged": true,
+            "restarted_HTTP_reads": 47,
+            "scope": "process crash; no power-loss durability claim"
+          },
+          "passed": true,
+          "elapsed_s": 10.8889
+        }
+      ],
+      "passed": true,
+      "server_log": "listening 127.0.0.1:36575; io_uring, 1 rings x 524280 direct descriptors; SQLite WAL/NORMAL\nlistening 127.0.0.1:43453; io_uring, 1 rings x 524280 direct descriptors; SQLite WAL/NORMAL\n"
+    },
+    {
+      "backend": "epoll",
+      "tests": [
+        {
+          "name": "unicode_and_json",
+          "evidence": {
+            "round_trip_cases": 5,
+            "boundary": "500 Unicode scalar values"
+          },
+          "passed": true,
+          "elapsed_s": 0.0166
+        },
+        {
+          "name": "jwt_validation",
+          "evidence": {
+            "invalid_jwts": 10,
+            "invalid_payloads": 12,
+            "empty_bearer_after_HTTP_OWS_normalization": "missing bearer token"
+          },
+          "passed": true,
+          "elapsed_s": 0.0129
+        },
+        {
+          "name": "live_reads_and_likes",
+          "evidence": {
+            "fresh_post_id": 500009,
+            "unique_likes": 2,
+            "repeat_likes": 4,
+            "read_model": "new HTTP connection after every acknowledged write"
+          },
+          "passed": true,
+          "elapsed_s": 0.0052
+        },
+        {
+          "name": "fragmented_request",
+          "evidence": {
+            "fragments": 36
+          },
+          "passed": true,
+          "elapsed_s": 0.0457
+        },
+        {
+          "name": "concurrent_like_idempotence",
+          "evidence": {
+            "requests": 64,
+            "client_threads": 32,
+            "inserted": 1,
+            "duplicates": 63
+          },
+          "passed": true,
+          "elapsed_s": 0.0404
+        },
+        {
+          "name": "pipeline_order",
+          "evidence": {
+            "pipelined_requests": 165,
+            "socket_reused": true,
+            "mixed_write_read_pipeline": true
+          },
+          "passed": true,
+          "elapsed_s": 0.0101
+        },
+        {
+          "name": "chunked_and_continue",
+          "evidence": {
+            "chunk_extensions": true,
+            "trailers": true,
+            "continue_handshake": true
+          },
+          "passed": true,
+          "elapsed_s": 0.0008
+        },
+        {
+          "name": "ambiguous_framing_rejected",
+          "evidence": {
+            "rejected_framing_variants": 6
+          },
+          "passed": true,
+          "elapsed_s": 0.0014
+        },
+        {
+          "name": "half_close",
+          "evidence": {
+            "complete_response_after_SHUT_WR": true
+          },
+          "passed": true,
+          "elapsed_s": 0.0003
+        },
+        {
+          "name": "slow_reader",
+          "evidence": {
+            "responses": 1024,
+            "verified_wire_bytes": 7141376,
+            "read_pause_ms": 250,
+            "short_send_events": "not instrumented"
+          },
+          "passed": true,
+          "elapsed_s": 0.3255
+        },
+        {
+          "name": "reset_churn",
+          "evidence": {
+            "reset_connections": 192,
+            "verified_fresh_connections": 64
+          },
+          "passed": true,
+          "elapsed_s": 0.0606
+        },
+        {
+          "name": "crash_recovery_and_schema",
+          "evidence": {
+            "acknowledged_posts_verified": 47,
+            "acknowledged_likes_verified": 36,
+            "signal": "SIGKILL",
+            "sqlite_integrity_check": "ok",
+            "foreign_key_check": "ok",
+            "schema_unchanged": true,
+            "restarted_HTTP_reads": 47,
+            "scope": "process crash; no power-loss durability claim"
+          },
+          "passed": true,
+          "elapsed_s": 11.0102
+        }
+      ],
+      "passed": true,
+      "server_log": "listening 127.0.0.1:44561; group=true, spin=0us; SQLite WAL/NORMAL\nlistening 127.0.0.1:41187; group=true, spin=0us; SQLite WAL/NORMAL\n"
+    }
+  ],
+  "passed": true,
+  "test_groups": 24
+}

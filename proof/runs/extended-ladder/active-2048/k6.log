@@ -1,0 +1,87 @@
+
+         /\      Grafana   /‾‾/  
+    /\  /  \     |\  __   /  /   
+   /  \/    \    | |/ /  /   ‾‾\ 
+  /          \   |   (  |  (‾)  |
+ / __________ \  |_|\_\  \_____/ 
+
+
+     execution: local
+        script: bench/load.js
+        output: json (/home/ace/.t3/scratch/2026-10-16-https-www-instagram-com-reel-19f08710/.tools/benchmark-raw/active-2048-955417/raw.json.gz)
+
+     scenarios: (100.00%) 1 scenario, 2048 max VUs, 25s max duration (incl. graceful stop):
+              * load: 2048 looping VUs for 15s (gracefulStop: 10s)
+
+
+running (00.6s), 2048/2048 VUs, 2528 complete and 0 interrupted iterations
+load   [   4% ] 2048 VUs  00.6s/15s
+
+running (01.6s), 2048/2048 VUs, 11355 complete and 0 interrupted iterations
+load   [  11% ] 2048 VUs  01.6s/15s
+
+running (02.6s), 2048/2048 VUs, 20456 complete and 0 interrupted iterations
+load   [  17% ] 2048 VUs  02.6s/15s
+
+running (03.7s), 2048/2048 VUs, 28114 complete and 0 interrupted iterations
+load   [  24% ] 2048 VUs  03.7s/15s
+
+running (04.6s), 2048/2048 VUs, 37391 complete and 0 interrupted iterations
+load   [  31% ] 2048 VUs  04.6s/15s
+
+running (05.6s), 2048/2048 VUs, 46660 complete and 0 interrupted iterations
+load   [  37% ] 2048 VUs  05.6s/15s
+
+running (06.6s), 2048/2048 VUs, 54854 complete and 0 interrupted iterations
+load   [  44% ] 2048 VUs  06.6s/15s
+
+running (07.6s), 2048/2048 VUs, 63090 complete and 0 interrupted iterations
+load   [  51% ] 2048 VUs  07.6s/15s
+
+running (08.6s), 2048/2048 VUs, 71366 complete and 0 interrupted iterations
+load   [  57% ] 2048 VUs  08.6s/15s
+
+running (09.6s), 2048/2048 VUs, 79174 complete and 0 interrupted iterations
+load   [  64% ] 2048 VUs  09.6s/15s
+
+running (10.6s), 2048/2048 VUs, 87497 complete and 0 interrupted iterations
+load   [  71% ] 2048 VUs  10.6s/15s
+
+running (11.6s), 2048/2048 VUs, 96342 complete and 0 interrupted iterations
+load   [  77% ] 2048 VUs  11.6s/15s
+
+running (12.6s), 2048/2048 VUs, 105288 complete and 0 interrupted iterations
+load   [  84% ] 2048 VUs  12.6s/15s
+
+running (13.6s), 2048/2048 VUs, 113158 complete and 0 interrupted iterations
+load   [  91% ] 2048 VUs  13.6s/15s
+
+running (14.6s), 2048/2048 VUs, 121550 complete and 0 interrupted iterations
+load   [  97% ] 2048 VUs  14.6s/15s
+
+running (15.2s), 0000/2048 VUs, 127533 complete and 0 interrupted iterations
+load ✓ [ 100% ] 2048 VUs  15s
+
+running (15.2s), 0000/2048 VUs, 127533 complete and 0 interrupted iterations
+load ✓ [ 100% ] 2048 VUs  15s
+
+running (15.2s), 0000/2048 VUs, 127533 complete and 0 interrupted iterations
+load ✓ [ 100% ] 2048 VUs  15s
+
+running (15.2s), 0000/2048 VUs, 127533 complete and 0 interrupted iterations
+load ✓ [ 100% ] 2048 VUs  15s
+
+running (15.2s), 0000/2048 VUs, 127533 complete and 0 interrupted iterations
+load ✓ [ 100% ] 2048 VUs  15s
+
+running (15.2s), 0000/2048 VUs, 127533 complete and 0 interrupted iterations
+load ✓ [ 100% ] 2048 VUs  15s
+
+running (15.2s), 0000/2048 VUs, 127533 complete and 0 interrupted iterations
+load ✓ [ 100% ] 2048 VUs  15s
+
+running (15.2s), 0000/2048 VUs, 127533 complete and 0 interrupted iterations
+load ✓ [ 100% ] 2048 VUs  15s
+
+running (15.2s), 0000/2048 VUs, 127533 complete and 0 interrupted iterations
+load ✓ [ 100% ] 2048 VUs  15s

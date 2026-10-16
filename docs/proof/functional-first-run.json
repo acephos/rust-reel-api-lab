@@ -1,0 +1,258 @@
+{
+  "kind": "functional-proof",
+  "started_utc": "2026-10-16T05:45:36Z",
+  "server_sha256": "0d928cf5b9984533e536e5409ab9930c09049050e816234954d9cff727121797",
+  "kernel": "7.2.5-3-omarchy",
+  "backends": [
+    {
+      "backend": "uring",
+      "tests": [
+        {
+          "name": "unicode_and_json",
+          "evidence": {
+            "round_trip_cases": 5,
+            "boundary": "500 Unicode scalar values"
+          },
+          "passed": true,
+          "elapsed_s": 0.0111
+        },
+        {
+          "name": "jwt_validation",
+          "passed": false,
+          "error": "AssertionError: expected (401, 'invalid or expired token'), received (401, {'error': 'missing bearer token'})",
+          "traceback": "Traceback (most recent call last):\n  File \"/home/ace/.t3/scratch/2026-10-16-https-www-instagram-com-reel-19f08710/tests/functional.py\", line 548, in main\n    record[\"evidence\"] = getattr(fixture, name)()\n                         ~~~~~~~~~~~~~~~~~~~~~~^^\n  File \"/home/ace/.t3/scratch/2026-10-16-https-www-instagram-com-reel-19f08710/tests/functional.py\", line 255, in jwt_validation\n    self.expect_error({\"body\": \"should fail\"}, 401, \"invalid or expired token\", token)\n    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/ace/.t3/scratch/2026-10-16-https-www-instagram-com-reel-19f08710/tests/functional.py\", line 214, in expect_error\n    check((actual, value) == (status, {\"error\": message}),\n    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n          f\"expected {(status, message)}, received {(actual, value)}\")\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/ace/.t3/scratch/2026-10-16-https-www-instagram-com-reel-19f08710/tests/functional.py\", line 41, in check\n    raise AssertionError(message)\nAssertionError: expected (401, 'invalid or expired token'), received (401, {'error': 'missing bearer token'})\n",
+          "elapsed_s": 0.0061
+        },
+        {
+          "name": "live_reads_and_likes",
+          "evidence": {
+            "fresh_post_id": 500008,
+            "unique_likes": 2,
+            "repeat_likes": 4,
+            "read_model": "new HTTP connection after every acknowledged write"
+          },
+          "passed": true,
+          "elapsed_s": 0.0058
+        },
+        {
+          "name": "fragmented_request",
+          "evidence": {
+            "fragments": 36
+          },
+          "passed": true,
+          "elapsed_s": 0.0423
+        },
+        {
+          "name": "concurrent_like_idempotence",
+          "evidence": {
+            "requests": 64,
+            "client_threads": 32,
+            "inserted": 1,
+            "duplicates": 63
+          },
+          "passed": true,
+          "elapsed_s": 0.029
+        },
+        {
+          "name": "pipeline_order",
+          "evidence": {
+            "pipelined_requests": 165,
+            "socket_reused": true,
+            "mixed_write_read_pipeline": true
+          },
+          "passed": true,
+          "elapsed_s": 0.0057
+        },
+        {
+          "name": "chunked_and_continue",
+          "evidence": {
+            "chunk_extensions": true,
+            "trailers": true,
+            "continue_handshake": true
+          },
+          "passed": true,
+          "elapsed_s": 0.0007
+        },
+        {
+          "name": "ambiguous_framing_rejected",
+          "evidence": {
+            "rejected_framing_variants": 6
+          },
+          "passed": true,
+          "elapsed_s": 0.0019
+        },
+        {
+          "name": "half_close",
+          "evidence": {
+            "complete_response_after_SHUT_WR": true
+          },
+          "passed": true,
+          "elapsed_s": 0.0004
+        },
+        {
+          "name": "slow_reader",
+          "evidence": {
+            "responses": 1024,
+            "verified_wire_bytes": 7190528,
+            "read_pause_ms": 250,
+            "short_send_events": "not instrumented"
+          },
+          "passed": true,
+          "elapsed_s": 0.3303
+        },
+        {
+          "name": "reset_churn",
+          "evidence": {
+            "reset_connections": 192,
+            "verified_fresh_connections": 64
+          },
+          "passed": true,
+          "elapsed_s": 0.0607
+        },
+        {
+          "name": "crash_recovery_and_schema",
+          "evidence": {
+            "acknowledged_posts_verified": 46,
+            "acknowledged_likes_verified": 36,
+            "signal": "SIGKILL",
+            "sqlite_integrity_check": "ok",
+            "foreign_key_check": "ok",
+            "schema_unchanged": true,
+            "restarted_HTTP_reads": 46,
+            "scope": "process crash; no power-loss durability claim"
+          },
+          "passed": true,
+          "elapsed_s": 10.1304
+        }
+      ],
+      "passed": false,
+      "server_log": "listening 127.0.0.1:45371; io_uring, 1 rings x 524280 direct descriptors; SQLite WAL/NORMAL\nlistening 127.0.0.1:39103; io_uring, 1 rings x 524280 direct descriptors; SQLite WAL/NORMAL\n"
+    },
+    {
+      "backend": "epoll",
+      "tests": [
+        {
+          "name": "unicode_and_json",
+          "evidence": {
+            "round_trip_cases": 5,
+            "boundary": "500 Unicode scalar values"
+          },
+          "passed": true,
+          "elapsed_s": 0.0103
+        },
+        {
+          "name": "jwt_validation",
+          "passed": false,
+          "error": "AssertionError: expected (401, 'invalid or expired token'), received (401, {'error': 'missing bearer token'})",
+          "traceback": "Traceback (most recent call last):\n  File \"/home/ace/.t3/scratch/2026-10-16-https-www-instagram-com-reel-19f08710/tests/functional.py\", line 548, in main\n    record[\"evidence\"] = getattr(fixture, name)()\n                         ~~~~~~~~~~~~~~~~~~~~~~^^\n  File \"/home/ace/.t3/scratch/2026-10-16-https-www-instagram-com-reel-19f08710/tests/functional.py\", line 255, in jwt_validation\n    self.expect_error({\"body\": \"should fail\"}, 401, \"invalid or expired token\", token)\n    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/ace/.t3/scratch/2026-10-16-https-www-instagram-com-reel-19f08710/tests/functional.py\", line 214, in expect_error\n    check((actual, value) == (status, {\"error\": message}),\n    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n          f\"expected {(status, message)}, received {(actual, value)}\")\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/ace/.t3/scratch/2026-10-16-https-www-instagram-com-reel-19f08710/tests/functional.py\", line 41, in check\n    raise AssertionError(message)\nAssertionError: expected (401, 'invalid or expired token'), received (401, {'error': 'missing bearer token'})\n",
+          "elapsed_s": 0.0044
+        },
+        {
+          "name": "live_reads_and_likes",
+          "evidence": {
+            "fresh_post_id": 500008,
+            "unique_likes": 2,
+            "repeat_likes": 4,
+            "read_model": "new HTTP connection after every acknowledged write"
+          },
+          "passed": true,
+          "elapsed_s": 0.0032
+        },
+        {
+          "name": "fragmented_request",
+          "evidence": {
+            "fragments": 36
+          },
+          "passed": true,
+          "elapsed_s": 0.0408
+        },
+        {
+          "name": "concurrent_like_idempotence",
+          "evidence": {
+            "requests": 64,
+            "client_threads": 32,
+            "inserted": 1,
+            "duplicates": 63
+          },
+          "passed": true,
+          "elapsed_s": 0.0263
+        },
+        {
+          "name": "pipeline_order",
+          "evidence": {
+            "pipelined_requests": 165,
+            "socket_reused": true,
+            "mixed_write_read_pipeline": true
+          },
+          "passed": true,
+          "elapsed_s": 0.0058
+        },
+        {
+          "name": "chunked_and_continue",
+          "evidence": {
+            "chunk_extensions": true,
+            "trailers": true,
+            "continue_handshake": true
+          },
+          "passed": true,
+          "elapsed_s": 0.0006
+        },
+        {
+          "name": "ambiguous_framing_rejected",
+          "evidence": {
+            "rejected_framing_variants": 6
+          },
+          "passed": true,
+          "elapsed_s": 0.001
+        },
+        {
+          "name": "half_close",
+          "evidence": {
+            "complete_response_after_SHUT_WR": true
+          },
+          "passed": true,
+          "elapsed_s": 0.0004
+        },
+        {
+          "name": "slow_reader",
+          "evidence": {
+            "responses": 1024,
+            "verified_wire_bytes": 7190528,
+            "read_pause_ms": 250,
+            "short_send_events": "not instrumented"
+          },
+          "passed": true,
+          "elapsed_s": 0.3176
+        },
+        {
+          "name": "reset_churn",
+          "evidence": {
+            "reset_connections": 192,
+            "verified_fresh_connections": 64
+          },
+          "passed": true,
+          "elapsed_s": 0.0537
+        },
+        {
+          "name": "crash_recovery_and_schema",
+          "evidence": {
+            "acknowledged_posts_verified": 46,
+            "acknowledged_likes_verified": 36,
+            "signal": "SIGKILL",
+            "sqlite_integrity_check": "ok",
+            "foreign_key_check": "ok",
+            "schema_unchanged": true,
+            "restarted_HTTP_reads": 46,
+            "scope": "process crash; no power-loss durability claim"
+          },
+          "passed": true,
+          "elapsed_s": 11.2227
+        }
+      ],
+      "passed": false,
+      "server_log": "listening 127.0.0.1:58967; group=true, spin=0us; SQLite WAL/NORMAL\nlistening 127.0.0.1:38537; group=true, spin=0us; SQLite WAL/NORMAL\n"
+    }
+  ],
+  "passed": false,
+  "test_groups": 24
+}

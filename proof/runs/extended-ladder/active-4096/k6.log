@@ -1,0 +1,91 @@
+
+         /\      Grafana   /‾‾/  
+    /\  /  \     |\  __   /  /   
+   /  \/    \    | |/ /  /   ‾‾\ 
+  /          \   |   (  |  (‾)  |
+ / __________ \  |_|\_\  \_____/ 
+
+
+     execution: local
+        script: bench/load.js
+        output: json (/home/ace/.t3/scratch/2026-10-16-https-www-instagram-com-reel-19f08710/.tools/benchmark-raw/active-4096-1008280/raw.json.gz)
+
+     scenarios: (100.00%) 1 scenario, 4096 max VUs, 25s max duration (incl. graceful stop):
+              * load: 4096 looping VUs for 15s (gracefulStop: 10s)
+
+
+running (00.1s), 4096/4096 VUs, 19 complete and 0 interrupted iterations
+load   [   1% ] 4096 VUs  00.1s/15s
+
+running (01.1s), 4096/4096 VUs, 3021 complete and 0 interrupted iterations
+load   [   8% ] 4096 VUs  01.1s/15s
+
+running (02.1s), 4096/4096 VUs, 14503 complete and 0 interrupted iterations
+load   [  14% ] 4096 VUs  02.1s/15s
+
+running (03.1s), 4096/4096 VUs, 23123 complete and 0 interrupted iterations
+load   [  21% ] 4096 VUs  03.1s/15s
+
+running (04.1s), 4096/4096 VUs, 30361 complete and 0 interrupted iterations
+load   [  28% ] 4096 VUs  04.1s/15s
+
+running (05.1s), 4096/4096 VUs, 39509 complete and 0 interrupted iterations
+load   [  34% ] 4096 VUs  05.1s/15s
+
+running (06.1s), 4096/4096 VUs, 46839 complete and 0 interrupted iterations
+load   [  41% ] 4096 VUs  06.1s/15s
+
+running (07.1s), 4096/4096 VUs, 55296 complete and 0 interrupted iterations
+load   [  48% ] 4096 VUs  07.1s/15s
+
+running (08.1s), 4096/4096 VUs, 63999 complete and 0 interrupted iterations
+load   [  54% ] 4096 VUs  08.1s/15s
+
+running (09.1s), 4096/4096 VUs, 69583 complete and 0 interrupted iterations
+load   [  61% ] 4096 VUs  09.1s/15s
+
+running (10.1s), 4096/4096 VUs, 80471 complete and 0 interrupted iterations
+load   [  68% ] 4096 VUs  10.1s/15s
+
+running (11.1s), 4096/4096 VUs, 88707 complete and 0 interrupted iterations
+load   [  74% ] 4096 VUs  11.1s/15s
+
+running (12.1s), 4096/4096 VUs, 97017 complete and 0 interrupted iterations
+load   [  81% ] 4096 VUs  12.1s/15s
+
+running (13.1s), 4096/4096 VUs, 104840 complete and 0 interrupted iterations
+load   [  88% ] 4096 VUs  13.1s/15s
+
+running (14.1s), 4096/4096 VUs, 112506 complete and 0 interrupted iterations
+load   [  94% ] 4096 VUs  14.1s/15s
+
+running (15.1s), 3820/4096 VUs, 120387 complete and 0 interrupted iterations
+load ↓ [ 100% ] 4096 VUs  15s
+
+running (15.5s), 0000/4096 VUs, 124207 complete and 0 interrupted iterations
+load ✓ [ 100% ] 4096 VUs  15s
+
+running (15.5s), 0000/4096 VUs, 124207 complete and 0 interrupted iterations
+load ✓ [ 100% ] 4096 VUs  15s
+
+running (15.5s), 0000/4096 VUs, 124207 complete and 0 interrupted iterations
+load ✓ [ 100% ] 4096 VUs  15s
+
+running (15.5s), 0000/4096 VUs, 124207 complete and 0 interrupted iterations
+load ✓ [ 100% ] 4096 VUs  15s
+
+running (15.5s), 0000/4096 VUs, 124207 complete and 0 interrupted iterations
+load ✓ [ 100% ] 4096 VUs  15s
+
+running (15.5s), 0000/4096 VUs, 124207 complete and 0 interrupted iterations
+load ✓ [ 100% ] 4096 VUs  15s
+
+running (15.5s), 0000/4096 VUs, 124207 complete and 0 interrupted iterations
+load ✓ [ 100% ] 4096 VUs  15s
+
+running (15.5s), 0000/4096 VUs, 124207 complete and 0 interrupted iterations
+load ✓ [ 100% ] 4096 VUs  15s
+
+running (15.5s), 0000/4096 VUs, 124207 complete and 0 interrupted iterations
+load ✓ [ 100% ] 4096 VUs  15s
+time="2026-10-16T11:25:16+05:30" level=error msg="thresholds on metrics 'full_request_ms{phase:hold,endpoint:create}, full_request_ms{phase:hold,endpoint:feed}, full_request_ms{phase:hold,endpoint:like}, full_request_ms{phase:hold,endpoint:post}, full_request_ms{phase:hold}' have been crossed"

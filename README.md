@@ -4,6 +4,12 @@ A working Rust implementation and reproducible study of [Arjay McCandless's SQLi
 
 The optimized engine is **derived from the MIT-licensed submission featured in the reel**, pinned to PR#19 revision `bd517fa7c8a57b135579ae02fdddb6196b4cd9a4`. Credit belongs to its original authors. This project adds the study, reproducible setup, demo, additional tests, independent reviews and proof collected on this machine. See [provenance/licenses](THIRD_PARTY.md) and [what changed](docs/review.md).
 
+## Measured on this machine
+
+On this Ryzen 5 5600H laptop, a five minute hold served **2,048 active workers at 10,497 validated requests/s**, with zero errors. HTTP transport overlap was **744 mean / 2,048 peak**; client-operation counts are reported separately. Full request p95/p99 were 235/323ms. Separately, 5,000 browsing users passed a five minute hold, and 5,000 offered requests/s passed with zero drops. This is a tested load on a shared loopback host, not an absolute maximum; the 4,096-worker exploratory stage failed the p95 target.
+
+[Complete functional and capacity proof](docs/proof/README.md) · [Standalone interactive report](docs/proof/report.html) · [Run the full proof](scripts/run-local-proof.sh)
+
 ## Run locally
 
 Linux 6.1+ with working io_uring, C compiler, curl, Python3, SQLite CLI, jq, openssl, Node 18+ and Rust 1.98.1. Use [scripts/install-deps.sh](scripts/install-deps.sh) to check utilities and install the pinned Rust toolchain through an existing rustup installation. No root or kernel tuning is needed. Initial SQLite PGO compilation takes several minutes.

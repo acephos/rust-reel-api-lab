@@ -1,0 +1,53 @@
+{
+  "k6_exit_code": 0,
+  "passed_k6_thresholds": true,
+  "complete_request_accounting": true,
+  "passed_all_checks": true,
+  "counts": {
+    "hold": {
+      "http_request_events": 109223,
+      "validated_successes": 109223
+    },
+    "statuses": {
+      "200": 61458,
+      "201": 47793
+    },
+    "endpoints": {
+      "post": 27312,
+      "feed": 27312,
+      "like": 27317,
+      "create": 27310
+    },
+    "drain": {
+      "http_request_events": 28,
+      "validated_successes": 28
+    }
+  },
+  "configured_hold_seconds": 15.0,
+  "hold_started_validated_successes_per_configured_second": 7281.533333333334,
+  "client_outstanding_all_phases": {
+    "started": 109251,
+    "finished": 109251,
+    "unfinished": 0,
+    "peak": 64,
+    "minimum": 0,
+    "mean_over_first_start_to_last_event": 62.4178359447265,
+    "observed_span_seconds": 15.055557012557983
+  },
+  "client_outstanding_requests_started_in_hold": {
+    "started": 109223,
+    "finished": 109223,
+    "unfinished": 0,
+    "peak": 64,
+    "minimum": 0,
+    "mean_over_first_start_to_last_event": 62.32239107808236,
+    "observed_span_seconds": 15.054105043411255
+  },
+  "concurrency_definition": "Start to full body consumption and semantic validation; includes client connection/pool waits. Hold classification is based on request start, and includes its drain.",
+  "limitations": [
+    "Peak timestamp resolution is k6 metric emission precision; exact timestamp ties complete before starts.",
+    "Fixed VUs and TCP connections are not simultaneous server handler execution.",
+    "k6 arrival model reports scheduling drops; it does not supply wrk2 schedule-corrected latency.",
+    "An interrupted request may have a start event without an end; unfinished counts remain visible."
+  ]
+}

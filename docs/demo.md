@@ -16,7 +16,7 @@ Phone routes verified during the task:
 
 - Same Wi-Fi: `http://192.168.88.13:8080` (address may change with DHCP).
 - Connected Tailscale device: `http://100.103.202.33:8080`.
-- Temporary HTTPS: address printed by the tunnel and included in the task's final response. This was verified with a public HTTPS health request and the collaborative browser at390px width; this is not a physical-phone or remote-load benchmark.
+- Temporary HTTPS: address printed by the tunnel and included in the task's final response. This was verified with a public HTTPS health request and the collaborative browser at 390px width; this is not a physical-phone or remote-load benchmark.
 
 The configured sample token belongs to a fictional seeded user. Its signing secret is the public challenge fixture, not an external credential. The normal four-variable API configuration does not enable the demo/token/report routes. Use distinct database files for benchmark and demo; exclusive SQLite locking prevents concurrent server ownership of a file. The public tunnel terminates TLS outside the Rust process; the measured benchmark path is direct loopback HTTP without the tunnel.
 

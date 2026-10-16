@@ -1,0 +1,319 @@
+{
+  "status": "complete",
+  "generated_utc": "2026-10-16T06:30:27.216006+00:00",
+  "repo_url": "https://github.com/acephos/rust-reel-api-lab",
+  "machine": {
+    "cpu": "AMD Ryzen 5 5600H \u00b7 6 cores / 12 threads",
+    "memory_gib": 30.7
+  },
+  "active": {
+    "mode": "active",
+    "duration_s": 300.0,
+    "rps": 10496.896666666667,
+    "validated_requests_started_in_hold": 3149069,
+    "p95_ms": 235,
+    "p99_ms": 323,
+    "errors": 0,
+    "outstanding_peak": 2048,
+    "outstanding_mean": 1778.614635587334,
+    "outstanding_span_s": 300.1165418624878,
+    "unfinished": 0,
+    "established_connections_sample_peak": 2180,
+    "server_cpu_mean_percent_one_core": 21.868407860257108,
+    "server_rss_peak_bytes": 190476288,
+    "generator_cpu_mean_percent_one_core": 408.7082241010474,
+    "generator_rss_peak_bytes": 12217319424,
+    "server_cpu_mean_percent_one_core_request_period": 42.16354896797774,
+    "generator_cpu_mean_percent_one_core_request_period": 670.3934565449952,
+    "request_period_resource_scope": "Samples within the first/last completion-second boundaries; includes ramp/drain when present and excludes the raw-export tail.",
+    "resource_sampling_scope": "All sampled phases, including ramp, drain and raw-export tail; CPU 100% means one logical core.",
+    "source_commit": "7c060d497d5f23ecd1b7d8f17ee30061c234a717",
+    "binary_sha256": "9a652c867a36449ab0acfc3988a8b16c149f4bd4b44faca2aac40bea33fc26e5",
+    "artifact_path": "proof/runs/active-hold",
+    "endpoints": {
+      "feed": {
+        "p95_ms": 236,
+        "p99_ms": 324,
+        "validated_requests": 787274
+      },
+      "post": {
+        "p95_ms": 234,
+        "p99_ms": 323,
+        "validated_requests": 787278
+      },
+      "like": {
+        "p95_ms": 235,
+        "p99_ms": 322,
+        "validated_requests": 787262
+      },
+      "create": {
+        "p95_ms": 235,
+        "p99_ms": 323,
+        "validated_requests": 787255
+      }
+    },
+    "concurrency": 2048,
+    "http_transport": {
+      "peak": 2048,
+      "minimum": 0,
+      "unfinished": 0,
+      "first_start_epoch_s": 1792130154.9066494,
+      "last_end_epoch_s": 1792130455.008408,
+      "observed_span_s": 300.1017587184906,
+      "mean": 743.8284730406785,
+      "requests": 3149069,
+      "zero_width_intervals": 0,
+      "http_duration_mean_ms": 70.88578654338696,
+      "scope": "HTTP requests tagged at wrapper start as hold; transport interval reconstructed from end minus sending+waiting+receiving duration. Excludes connection setup, JS validation and metric recording; does not count simultaneous SQLite execution.",
+      "source_run": "proof/runs/active-hold",
+      "raw_sha256": "b2e54ad0946e0ce3c7bd2874dcc3066c41ba4d97d8e2edf86839dcca3a418d86",
+      "binary_sha256": "9a652c867a36449ab0acfc3988a8b16c149f4bd4b44faca2aac40bea33fc26e5",
+      "method_source": "https://grafana.com/docs/k6/latest/using-k6/metrics/reference/",
+      "precision": "Timestamp parsed to microsecond resolution; zero-width intervals excluded from peak, retained in request count."
+    }
+  },
+  "users": {
+    "mode": "original",
+    "duration_s": 300.0,
+    "rps": 529.4666666666667,
+    "validated_requests_started_in_hold": 158840,
+    "p95_ms": 1,
+    "p99_ms": 2,
+    "errors": 0,
+    "outstanding_peak": 18,
+    "outstanding_mean": 0.32778411810563324,
+    "outstanding_span_s": 299.99871015548706,
+    "unfinished": 0,
+    "established_connections_sample_peak": 5000,
+    "server_cpu_mean_percent_one_core": 3.0805905601348567,
+    "server_rss_peak_bytes": 15843328,
+    "generator_cpu_mean_percent_one_core": 47.390507376587145,
+    "generator_rss_peak_bytes": 2597593088,
+    "server_cpu_mean_percent_one_core_request_period": 3.0888054682952166,
+    "generator_cpu_mean_percent_one_core_request_period": 45.98155368497564,
+    "request_period_resource_scope": "Samples within the first/last completion-second boundaries; includes ramp/drain when present and excludes the raw-export tail.",
+    "resource_sampling_scope": "All sampled phases, including ramp, drain and raw-export tail; CPU 100% means one logical core.",
+    "source_commit": "d9b370d09587bb97ef8bac9f2ef898195dea97ac",
+    "binary_sha256": "9a652c867a36449ab0acfc3988a8b16c149f4bd4b44faca2aac40bea33fc26e5",
+    "artifact_path": "proof/runs/original-hold",
+    "endpoints": {
+      "feed": {
+        "p95_ms": 1,
+        "p99_ms": 3,
+        "validated_requests": 73113
+      },
+      "post": {
+        "p95_ms": 1,
+        "p99_ms": 2,
+        "validated_requests": 73269
+      },
+      "like": {
+        "p95_ms": 1,
+        "p99_ms": 2,
+        "validated_requests": 10965
+      },
+      "create": {
+        "p95_ms": 1,
+        "p99_ms": 2,
+        "validated_requests": 1493
+      }
+    },
+    "vus": 5000
+  },
+  "open": {
+    "mode": "open",
+    "duration_s": 60.0,
+    "rps": 4999.983333333334,
+    "validated_requests_started_in_hold": 299999,
+    "p95_ms": 4,
+    "p99_ms": 8,
+    "errors": 0,
+    "outstanding_peak": 146,
+    "outstanding_mean": 6.12442728743439,
+    "outstanding_span_s": 59.9872670173645,
+    "unfinished": 0,
+    "established_connections_sample_peak": 256,
+    "server_cpu_mean_percent_one_core": 25.191205713071128,
+    "server_rss_peak_bytes": 30302208,
+    "generator_cpu_mean_percent_one_core": 367.0859402172583,
+    "generator_rss_peak_bytes": 305004544,
+    "server_cpu_mean_percent_one_core_request_period": 25.191205713071128,
+    "generator_cpu_mean_percent_one_core_request_period": 367.0859402172583,
+    "request_period_resource_scope": "Samples within the first/last completion-second boundaries; includes ramp/drain when present and excludes the raw-export tail.",
+    "resource_sampling_scope": "All sampled phases, including ramp, drain and raw-export tail; CPU 100% means one logical core.",
+    "source_commit": "8c59873dc648fe3c3253ef119d5e9238e3d87ea1",
+    "binary_sha256": "9a652c867a36449ab0acfc3988a8b16c149f4bd4b44faca2aac40bea33fc26e5",
+    "artifact_path": "proof/runs/open-confirmation",
+    "endpoints": {
+      "feed": {
+        "p95_ms": 5,
+        "p99_ms": 9,
+        "validated_requests": 74998
+      },
+      "post": {
+        "p95_ms": 3,
+        "p99_ms": 8,
+        "validated_requests": 74999
+      },
+      "like": {
+        "p95_ms": 3,
+        "p99_ms": 7,
+        "validated_requests": 75000
+      },
+      "create": {
+        "p95_ms": 4,
+        "p99_ms": 8,
+        "validated_requests": 75002
+      }
+    },
+    "rate": 5000,
+    "dropped": 0,
+    "planned_arrivals": 300000.0,
+    "started_arrivals": 300001,
+    "finished_arrivals": 300001,
+    "arrival_accounting_residual": -1.0
+  },
+  "warmup": {
+    "mode": "original",
+    "duration_s": 120.0,
+    "rps": 109.85,
+    "validated_requests_started_in_hold": 13182,
+    "p95_ms": 1,
+    "p99_ms": 2,
+    "errors": 0,
+    "outstanding_peak": 6,
+    "outstanding_mean": 0.08036274451144478,
+    "outstanding_span_s": 119.9930260181427,
+    "unfinished": 0,
+    "established_connections_sample_peak": 1000,
+    "server_cpu_mean_percent_one_core": 0.8941682277203943,
+    "server_rss_peak_bytes": 9240576,
+    "generator_cpu_mean_percent_one_core": 13.35756917124804,
+    "generator_rss_peak_bytes": 594403328,
+    "server_cpu_mean_percent_one_core_request_period": 0.9148028791293265,
+    "generator_cpu_mean_percent_one_core_request_period": 13.650675675702677,
+    "request_period_resource_scope": "Samples within the first/last completion-second boundaries; includes ramp/drain when present and excludes the raw-export tail.",
+    "resource_sampling_scope": "All sampled phases, including ramp, drain and raw-export tail; CPU 100% means one logical core.",
+    "source_commit": "d9b370d09587bb97ef8bac9f2ef898195dea97ac",
+    "binary_sha256": "9a652c867a36449ab0acfc3988a8b16c149f4bd4b44faca2aac40bea33fc26e5",
+    "artifact_path": "proof/runs/original-warmup",
+    "endpoints": {
+      "feed": {
+        "p95_ms": 2,
+        "p99_ms": 3,
+        "validated_requests": 6162
+      },
+      "post": {
+        "p95_ms": 1,
+        "p99_ms": 2,
+        "validated_requests": 6039
+      },
+      "like": {
+        "p95_ms": 1,
+        "p99_ms": 2,
+        "validated_requests": 866
+      },
+      "create": {
+        "p95_ms": 1,
+        "p99_ms": 1,
+        "validated_requests": 115
+      }
+    },
+    "vus": 1000
+  },
+  "database_reconciliation": {
+    "active": {
+      "seed_counts": {
+        "users": 50000,
+        "posts": 500000,
+        "likes": 2016005
+      },
+      "persisted_counts": {
+        "users": 50000,
+        "posts": 1287257,
+        "likes": 2803209
+      },
+      "expected_counts": {
+        "users": 50000,
+        "posts": 1287257,
+        "likes": 2803209
+      },
+      "all_acknowledged_creates": 787257,
+      "all_acknowledged_first_likes": 787204,
+      "integrity_check": [
+        "ok"
+      ],
+      "foreign_key_check": [],
+      "schema_sha256": "0462af3198b949ce6173f5a15e1db9a15a7267ba980cde30706cd8a7289617c8",
+      "schema_unchanged": true,
+      "passed": true,
+      "scope": "Persisted row-count reconciliation after process stop, not power-loss durability."
+    },
+    "original": {
+      "seed_counts": {
+        "users": 50000,
+        "posts": 500000,
+        "likes": 2016005
+      },
+      "persisted_counts": {
+        "users": 50000,
+        "posts": 501864,
+        "likes": 2029807
+      },
+      "expected_counts": {
+        "users": 50000,
+        "posts": 501864,
+        "likes": 2029807
+      },
+      "all_acknowledged_creates": 1864,
+      "all_acknowledged_first_likes": 13802,
+      "integrity_check": [
+        "ok"
+      ],
+      "foreign_key_check": [],
+      "schema_sha256": "0462af3198b949ce6173f5a15e1db9a15a7267ba980cde30706cd8a7289617c8",
+      "schema_unchanged": true,
+      "passed": true,
+      "scope": "Persisted row-count reconciliation after process stop, not power-loss durability."
+    },
+    "open": {
+      "seed_counts": {
+        "users": 50000,
+        "posts": 500000,
+        "likes": 2016005
+      },
+      "persisted_counts": {
+        "users": 50000,
+        "posts": 575002,
+        "likes": 2090999
+      },
+      "expected_counts": {
+        "users": 50000,
+        "posts": 575002,
+        "likes": 2090999
+      },
+      "all_acknowledged_creates": 75002,
+      "all_acknowledged_first_likes": 74994,
+      "integrity_check": [
+        "ok"
+      ],
+      "foreign_key_check": [],
+      "schema_sha256": "0462af3198b949ce6173f5a15e1db9a15a7267ba980cde30706cd8a7289617c8",
+      "schema_unchanged": true,
+      "passed": true,
+      "scope": "Persisted row-count reconciliation after process stop, not power-loss durability."
+    }
+  },
+  "notes": [
+    "HTTP transport during the active hold: mean 743.8, peak 2,048 requests sending/waiting/receiving. This is separate from 2,048 configured workers and client-operation overlap.",
+    "Single-machine loopback measurements on Ryzen 5 5600H (6 cores / 12 threads), Linux 7.2.5. The load generator shares CPU, memory, disk and network stack with the API.",
+    "Active: no think time; rotation is 25% feed, 25% post, 25% like, 25% create. Original browsing: upstream think times, 15% like and 2% create chances per user loop.",
+    "Configured workers are not simultaneous server execution. Client-operation overlap includes connection/pool waits, body consumption, validation and metric recording. The separate HTTP-only reconstruction excludes setup/validation/metric recording. SQLite remains serialized.",
+    "Throughput is validated completions of requests STARTED during the hold divided by configured hold seconds; those requests may finish in the bounded drain. Exact observed spans, starts/finishes and unfinished counts are in each accounting.json.",
+    "Latencies are full HTTP plus JSON validation, at 1-ms resolution, for requests started during the hold. Every endpoint also passes p95<500ms / p99<1000ms. Semantic and HTTP failures are zero.",
+    "This is a demonstrated passing load, not an absolute maximum or an official droplet score. The generator is a material bottleneck; more server CPU headroom is not proof of a higher untested capacity.",
+    "Open arrivals use k6 constant-arrival-rate and require zero drops. Latencies are not wrk2 planned-schedule-corrected; arrival accounting and any theoretical scheduling-boundary residual are retained.",
+    "Resource CPU means include all sampled phases and the raw-export tail after requests stop; inspect timestamped samples for the request-active window. CPU 100% means one logical core.",
+    "Complete per-request gzip events are retained locally with SHA256 references. GitHub contains exact summaries, interval histograms, concurrency accounting and resource samples; large raw event streams are not published."
+  ]
+}

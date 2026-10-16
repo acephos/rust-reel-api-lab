@@ -1,0 +1,12 @@
+{"epoch_second": 1792129830, "phase": "hold", "endpoint": "create", "requests": 882, "full_ms_sum": 2025, "full_ms_max": 20, "histogram": {"5": 269, "2": 280, "1": 282, "10": 10, "0.1": 30, "20": 11}}
+{"epoch_second": 1792129830, "phase": "hold", "endpoint": "feed", "requests": 882, "full_ms_sum": 2662, "full_ms_max": 19, "histogram": {"5": 376, "1": 141, "2": 295, "10": 59, "20": 10, "0.1": 1}}
+{"epoch_second": 1792129830, "phase": "hold", "endpoint": "like", "requests": 882, "full_ms_sum": 1783, "full_ms_max": 17, "histogram": {"5": 212, "2": 304, "1": 321, "0.1": 33, "20": 6, "10": 6}}
+{"epoch_second": 1792129830, "phase": "hold", "endpoint": "post", "requests": 881, "full_ms_sum": 1839, "full_ms_max": 19, "histogram": {"2": 288, "5": 235, "1": 312, "10": 11, "0.1": 30, "20": 5}}
+{"epoch_second": 1792129831, "phase": "hold", "endpoint": "create", "requests": 1481, "full_ms_sum": 3368, "full_ms_max": 24, "histogram": {"5": 432, "1": 460, "2": 514, "0.1": 43, "20": 9, "10": 17, "50": 6}}
+{"epoch_second": 1792129831, "phase": "hold", "endpoint": "feed", "requests": 1480, "full_ms_sum": 4635, "full_ms_max": 24, "histogram": {"5": 708, "2": 472, "1": 190, "10": 92, "20": 7, "0.1": 2, "50": 9}}
+{"epoch_second": 1792129831, "phase": "hold", "endpoint": "like", "requests": 1479, "full_ms_sum": 3339, "full_ms_max": 24, "histogram": {"0.1": 66, "2": 513, "1": 456, "10": 16, "5": 412, "20": 7, "50": 9}}
+{"epoch_second": 1792129831, "phase": "hold", "endpoint": "post", "requests": 1477, "full_ms_sum": 3465, "full_ms_max": 27, "histogram": {"5": 435, "2": 507, "1": 457, "0.1": 41, "10": 18, "20": 11, "50": 8}}
+{"epoch_second": 1792129832, "phase": "hold", "endpoint": "create", "requests": 705, "full_ms_sum": 1533, "full_ms_max": 20, "histogram": {"1": 250, "2": 249, "5": 170, "10": 5, "0.1": 21, "20": 10}}
+{"epoch_second": 1792129832, "phase": "hold", "endpoint": "feed", "requests": 706, "full_ms_sum": 2167, "full_ms_max": 22, "histogram": {"1": 94, "2": 242, "5": 322, "10": 37, "20": 7, "50": 4}}
+{"epoch_second": 1792129832, "phase": "hold", "endpoint": "like", "requests": 705, "full_ms_sum": 1442, "full_ms_max": 20, "histogram": {"1": 239, "0.1": 33, "2": 259, "5": 160, "10": 9, "20": 5}}
+{"epoch_second": 1792129832, "phase": "hold", "endpoint": "post", "requests": 708, "full_ms_sum": 1567, "full_ms_max": 19, "histogram": {"1": 238, "2": 238, "5": 191, "0.1": 23, "10": 9, "20": 9}}

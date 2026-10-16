@@ -17,7 +17,9 @@ See [the independent specification report](review-spec.md). No confirmed API reg
 - Both io_uring and explicit epoll pass the unchanged upstream42 checks on fresh full seed copies.
 - Extended suite:12 substantive groups per backend,24 groups total. A first-run JWT test incorrectly expected “invalid token” for an empty bearer credential; HTTP field whitespace normalization makes this a missing-bearer error. Corrected the test; preserved the first result and the focused recheck. It was a test defect, not an API fix.
 - The suite validates47 acknowledged posts and36 acknowledged likes after SIGKILL for each backend, SQLite integrity/foreign keys and unchanged schema, then restarts and reads posts through HTTP. This is process recovery, not power-loss proof.
-- Desktop and390px browser checks exercised real creation, live feed, liking, post inspection, explorer, health and pending proof. A mobile request-history overflow was found and fixed by bounding the nested grid track; post bodies use text nodes and a script-looking payload remained literal text.
+- Desktop and 390px browser checks exercised real creation, live feed, liking, post inspection, explorer, health and the completed capacity proof. A mobile request-history overflow was found and fixed by bounding the nested grid track; post bodies use text nodes and a script-looking payload remained literal text.
 - Rust formatting, release Clippy with warnings denied, Bash/Python/JavaScript syntax checks and live demo reachability are recorded with the proof artifacts. No claim of exhaustive memory-safety auditing or a sanitizer run.
 
 Standards:1 historical documented finding plus1 engineering judgment, both resolved; worst historical issue was source pin bypass. Spec:0 confirmed defects. Capacity conclusions are separately reviewed against the measured artifacts in `docs/proof/README.md`.
+
+The final capacity publication was separately audited after all holds finished; [the proof review](proof/proof-review.md) found no material unresolved issue. All three post-load database reconciliations passed. The measured binary is the same one covered by the final functional suite.

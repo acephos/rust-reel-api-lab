@@ -1,0 +1,25 @@
+
+         /\      Grafana   /‾‾/  
+    /\  /  \     |\  __   /  /   
+   /  \/    \    | |/ /  /   ‾‾\ 
+  /          \   |   (  |  (‾)  |
+ / __________ \  |_|\_\  \_____/ 
+
+
+     execution: local
+        script: bench/load.js
+        output: json (/home/ace/.t3/scratch/2026-10-16-https-www-instagram-com-reel-19f08710/.tools/benchmark-raw/smoke-636750/raw.json.gz)
+
+     scenarios: (100.00%) 1 scenario, 16 max VUs, 12s max duration (incl. graceful stop):
+              * load: 16 looping VUs for 2s (gracefulStop: 10s)
+
+
+running (01.0s), 16/16 VUs, 6752 complete and 0 interrupted iterations
+load   [  50% ] 16 VUs  1.0s/2s
+
+running (02.0s), 16/16 VUs, 13817 complete and 0 interrupted iterations
+load   [ 100% ] 16 VUs  2.0s/2s
+
+running (02.0s), 00/16 VUs, 13868 complete and 0 interrupted iterations
+load ✓ [ 100% ] 16 VUs  2s
+time="2026-10-16T11:19:46+05:30" level=error msg="thresholds on metrics 'checks, semantic_success, validated_requests{phase:hold,endpoint:feed}' have been crossed"

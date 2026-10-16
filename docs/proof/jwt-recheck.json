@@ -1,0 +1,44 @@
+{
+  "kind": "functional-proof",
+  "started_utc": "2026-10-16T05:46:55Z",
+  "server_sha256": "0d928cf5b9984533e536e5409ab9930c09049050e816234954d9cff727121797",
+  "kernel": "7.2.5-3-omarchy",
+  "backends": [
+    {
+      "backend": "uring",
+      "tests": [
+        {
+          "name": "jwt_validation",
+          "evidence": {
+            "invalid_jwts": 10,
+            "invalid_payloads": 12,
+            "empty_bearer_after_HTTP_OWS_normalization": "missing bearer token"
+          },
+          "passed": true,
+          "elapsed_s": 0.0142
+        }
+      ],
+      "passed": true,
+      "server_log": "listening 127.0.0.1:48609; io_uring, 1 rings x 524280 direct descriptors; SQLite WAL/NORMAL\n"
+    },
+    {
+      "backend": "epoll",
+      "tests": [
+        {
+          "name": "jwt_validation",
+          "evidence": {
+            "invalid_jwts": 10,
+            "invalid_payloads": 12,
+            "empty_bearer_after_HTTP_OWS_normalization": "missing bearer token"
+          },
+          "passed": true,
+          "elapsed_s": 0.0129
+        }
+      ],
+      "passed": true,
+      "server_log": "listening 127.0.0.1:37567; group=true, spin=0us; SQLite WAL/NORMAL\n"
+    }
+  ],
+  "passed": true,
+  "test_groups": 2
+}

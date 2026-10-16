@@ -41,4 +41,5 @@ start_server open
 MODE=open RATE="${OPEN_RATE:-5000}" VUS=256 MAX_VUS=1024 DURATION=60s OUT="$root/open-confirmation" scripts/benchmark.sh
 stop_server
 python3 scripts/check-loaded-database.py --seed "$seed" --database "$fixture/open.db" --run "$root/open-confirmation" > "$root/open-database-check.json"
+python3 bench/http-concurrency.py --run "$root/active-hold" --output docs/proof/http-active.json
 python3 scripts/summarize-proof.py --active "$root/active-hold" --users "$root/original-hold" --open "$root/open-confirmation"

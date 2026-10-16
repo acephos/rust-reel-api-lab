@@ -1,0 +1,53 @@
+{
+  "k6_exit_code": 0,
+  "passed_k6_thresholds": true,
+  "complete_request_accounting": true,
+  "passed_all_checks": true,
+  "counts": {
+    "hold": {
+      "http_request_events": 299999,
+      "validated_successes": 299999
+    },
+    "statuses": {
+      "200": 150005,
+      "201": 149996
+    },
+    "endpoints": {
+      "post": 74999,
+      "create": 75002,
+      "like": 75000,
+      "feed": 75000
+    },
+    "drain": {
+      "http_request_events": 2,
+      "validated_successes": 2
+    }
+  },
+  "configured_hold_seconds": 60.0,
+  "hold_started_validated_successes_per_configured_second": 4999.983333333334,
+  "client_outstanding_all_phases": {
+    "started": 300001,
+    "finished": 300001,
+    "unfinished": 0,
+    "peak": 146,
+    "minimum": 0,
+    "mean_over_first_start_to_last_event": 6.124445690857567,
+    "observed_span_seconds": 59.98743486404419
+  },
+  "client_outstanding_requests_started_in_hold": {
+    "started": 299999,
+    "finished": 299999,
+    "unfinished": 0,
+    "peak": 146,
+    "minimum": 0,
+    "mean_over_first_start_to_last_event": 6.12442728743439,
+    "observed_span_seconds": 59.9872670173645
+  },
+  "concurrency_definition": "Client request wrappers: includes connection/pool waits, full body consumption, semantic validation and metric-recording overhead. These are not HTTP-only in-flight counts. Hold classification is based on wrapper start and includes its drain.",
+  "limitations": [
+    "Peak timestamp resolution is k6 metric emission precision; exact timestamp ties complete before starts.",
+    "Fixed VUs and TCP connections are not simultaneous server handler execution.",
+    "k6 arrival model reports scheduling drops; it does not supply wrk2 schedule-corrected latency.",
+    "An interrupted request may have a start event without an end; unfinished counts remain visible."
+  ]
+}

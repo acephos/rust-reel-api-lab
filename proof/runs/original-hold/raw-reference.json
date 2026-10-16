@@ -1,0 +1,6 @@
+{
+  "path_on_measurement_machine": "/home/ace/.t3/scratch/2026-10-16-https-www-instagram-com-reel-19f08710/.tools/benchmark-raw/original-hold-2437438/raw.json.gz",
+  "sha256": "10a19a3941d535e8b8166b5f6f308a6151cd09dfe9b514b3649e65f785096f78",
+  "compressed_bytes": 31885180,
+  "retention": "Complete gzip JSON events retained locally outside git. Compact derived intervals and exact k6 summaries are published."
+}
