@@ -26,8 +26,11 @@ def read(path):
 
 
 def command(*args):
-    result = subprocess.run(args, text=True, capture_output=True, check=False)
-    return {"exit_code": result.returncode, "stdout": result.stdout, "stderr": result.stderr}
+    try:
+        result = subprocess.run(args, text=True, capture_output=True, check=False)
+        return {"exit_code": result.returncode, "stdout": result.stdout, "stderr": result.stderr}
+    except OSError as error:
+        return {"exit_code": 127, "stdout": '', "stderr": str(error)}
 
 
 def cgroups(pid):
@@ -53,6 +56,15 @@ def sha(path):
 def machine(args):
     chosen = ['MODE', 'VUS', 'MAX_VUS', 'RATE', 'DURATION', 'RAMP_UP', 'RAMP_DOWN',
               'BASE_URL', 'TIMEOUT', 'SEED', 'POST_IDS', 'SERVER_PID']
+    server_config = {}
+    if args.pid:
+        server_config['argv'] = (read(f'/proc/{args.pid}/cmdline') or '').split('\0')
+        allowed = {'HOST', 'PORT', 'SQLITE_PATH', 'DEMO_CONFIG_PATH', 'DEMO_PROOF_PATH'}
+        environment = (read(f'/proc/{args.pid}/environ') or '').split('\0')
+        server_config['environment'] = {
+            key: value for item in environment if '=' in item
+            for key, value in [item.split('=', 1)] if key in allowed
+        }
     result = {
         'captured_utc': datetime.now(timezone.utc).isoformat(),
         'kernel': platform.uname()._asdict(), 'cpu': command('lscpu', '-J'),
@@ -69,6 +81,7 @@ def machine(args):
         'server_affinity': sorted(os.sched_getaffinity(args.pid)) if args.pid else None,
         'server_executable': os.readlink(f'/proc/{args.pid}/exe') if args.pid else None,
         'server_executable_sha256': sha(f'/proc/{args.pid}/exe') if args.pid else None,
+        'server_configuration': server_config,
         'git': command('git', 'rev-parse', 'HEAD'), 'git_status': command('git', 'status', '--porcelain'),
         'k6': command(args.k6, 'version'),
         'rustc': command(str(Path.home() / '.cargo/bin/rustc'), '--version'),
