@@ -77,7 +77,9 @@ function request(endpoint, method, path, body, auth, predicate) {
     const r = http.request(method, `${base}${path}`, body, {headers: auth || {}, tags: t, timeout: __ENV.TIMEOUT || '5s'});
     const contentType = String(r.headers['Content-Type'] || '').toLowerCase();
     let data = null;
-    try { data = r.json(); } catch (_) { /* A JSON failure is a semantic failure below. */ }
+    // k6 Response.json() converts objects through Go maps and loses wire key
+    // order. Native JSON.parse preserves JSON insertion order for SPEC checks.
+    try { data = JSON.parse(r.body); } catch (_) { /* A JSON failure is a semantic failure below. */ }
     okay = contentType.startsWith('application/json') && data !== null && predicate(r, data);
     result = okay ? data : null;
     check(r, {[`${endpoint} status, schema and meaning`]: () => okay}, t);
