@@ -239,7 +239,7 @@ def report(args):
               'hold_started_validated_successes_per_configured_second': counts['hold']['validated_successes'] / hold_seconds,
               'client_outstanding_all_phases': all_concurrency,
               'client_outstanding_requests_started_in_hold': hold_concurrency,
-              'concurrency_definition': 'Start to full body consumption and semantic validation; includes client connection/pool waits. Hold classification is based on request start, and includes its drain.',
+              'concurrency_definition': 'Client request wrappers: includes connection/pool waits, full body consumption, semantic validation and metric-recording overhead. These are not HTTP-only in-flight counts. Hold classification is based on wrapper start and includes its drain.',
               'limitations': ['Peak timestamp resolution is k6 metric emission precision; exact timestamp ties complete before starts.',
                               'Fixed VUs and TCP connections are not simultaneous server handler execution.',
                               'k6 arrival model reports scheduling drops; it does not supply wrk2 schedule-corrected latency.',

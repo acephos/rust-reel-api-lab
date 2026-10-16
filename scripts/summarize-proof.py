@@ -36,8 +36,12 @@ def load_run(path):
         if record['unfinished'] != 0 or record.get('minimum', 0) < 0:
             raise ValueError(f'Unbalanced request accounting: {folder}')
     resources = [json.loads(line) for line in (folder / 'resources.jsonl').read_text().splitlines()]
-    def resource(role, field, reduction):
-        samples = [r[role][field] for r in resources if r.get(role) and r[role].get(field) is not None]
+    intervals = [json.loads(line) for line in (folder / 'intervals.jsonl').read_text().splitlines()]
+    first_second = min(r['epoch_second'] for r in intervals)
+    last_second = max(r['epoch_second'] for r in intervals)
+    request_resources = [r for r in resources if first_second <= datetime.fromisoformat(r['utc']).timestamp() < last_second + 1]
+    def resource(role, field, reduction, rows=resources):
+        samples = [r[role][field] for r in rows if r.get(role) and r[role].get(field) is not None]
         return reduction(samples) if samples else None
     hold = accounting['counts']['hold']
     outstanding = accounting['client_outstanding_requests_started_in_hold']
@@ -56,6 +60,9 @@ def load_run(path):
         'server_rss_peak_bytes': resource('server', 'rss_bytes', max),
         'generator_cpu_mean_percent_one_core': resource('client', 'cpu_percent_one_core', statistics.mean),
         'generator_rss_peak_bytes': resource('client', 'rss_bytes', max),
+        'server_cpu_mean_percent_one_core_request_period': resource('server', 'cpu_percent_one_core', statistics.mean, request_resources),
+        'generator_cpu_mean_percent_one_core_request_period': resource('client', 'cpu_percent_one_core', statistics.mean, request_resources),
+        'request_period_resource_scope': 'Samples within the first/last completion-second boundaries; includes ramp/drain when present and excludes the raw-export tail.',
         'resource_sampling_scope': 'All sampled phases, including ramp, drain and raw-export tail; CPU100% means one logical core.',
         'source_commit': machine['git']['stdout'].strip(),
         'binary_sha256': machine['server_executable_sha256'],
@@ -97,10 +104,22 @@ if w['duration_s'] != 120 or w['vus'] != 1000:
     raise ValueError('Require the recorded1,000-user/two-minute warm-up')
 if len({run['binary_sha256'] for run in [a, u, o, w]}) != 1:
     raise ValueError('Different binaries require separate reports')
+transport_path = Path('docs/proof/http-active.json')
+if not transport_path.exists():
+    raise ValueError('Generate the separate HTTP transport overlap proof first')
+if transport_path.exists():
+    transport = json.loads(transport_path.read_text())
+    reference = json.loads((Path(args.active) / 'raw-reference.json').read_text())
+    if transport['binary_sha256'] != a['binary_sha256'] or transport['raw_sha256'] != reference['sha256'] or transport['source_run'] != a['artifact_path']:
+        raise ValueError('HTTP-only concurrency evidence belongs to another run')
+    if transport['requests'] != a['validated_requests_started_in_hold']:
+        raise ValueError('HTTP-only count differs from the validated hold count')
+    a['http_transport'] = transport
 notes = [
+    f"HTTP transport during the active hold: mean {a['http_transport']['mean']:.1f}, peak {a['http_transport']['peak']:,} requests sending/waiting/receiving. This is separate from {a['concurrency']:,} configured workers and client-operation overlap.",
     'Single-machine loopback measurements on Ryzen 5 5600H (6 cores / 12 threads), Linux 7.2.5. The load generator shares CPU, memory, disk and network stack with the API.',
     'Active: no think time; rotation is 25% feed, 25% post, 25% like, 25% create. Original browsing: upstream think times, 15% like and 2% create chances per user loop.',
-    'Configured workers are not simultaneous server execution. Outstanding measurements include client connection/pool waits, full body consumption and semantic validation; SQLite remains serialized.',
+    'Configured workers are not simultaneous server execution. Client-operation overlap includes connection/pool waits, body consumption, validation and metric recording. The separate HTTP-only reconstruction excludes setup/validation/metric recording. SQLite remains serialized.',
     'Throughput is validated completions of requests STARTED during the hold divided by configured hold seconds; those requests may finish in the bounded drain. Exact observed spans, starts/finishes and unfinished counts are in each accounting.json.',
     'Latencies are full HTTP plus JSON validation, at 1-ms resolution, for requests started during the hold. Every endpoint also passes p95<500ms / p99<1000ms. Semantic and HTTP failures are zero.',
     'This is a demonstrated passing load, not an absolute maximum or an official droplet score. The generator is a material bottleneck; more server CPU headroom is not proof of a higher untested capacity.',
@@ -122,9 +141,11 @@ text = f'''# Capacity proof on this machine
 
 Generated from the checked-in artifacts by `scripts/summarize-proof.py` on {report['generated_utc']}. [Machine-readable report](demo.json).
 
-The API demonstrated **{a['concurrency']:,} continuously active request workers for five minutes**, with observed mean {a['outstanding_mean']:.1f} / peak {a['outstanding_peak']:,} outstanding requests, at {a['rps']:,.1f} validated requests/s and zero errors. This is a tested lower bound, not the machine's absolute maximum. Separately, **{u['vus']:,} browsing virtual users** passed a five-minute hold with the reel's pacing.
+The API served **{a['concurrency']:,} continuously active request workers for five minutes** at {a['rps']:,.1f} validated requests/s and zero errors. Actual HTTP transport overlap was **mean {a['http_transport']['mean']:.1f}, peak {a['http_transport']['peak']:,} requests** sending/waiting/receiving over {a['http_transport']['observed_span_s']:.2f}s. This is a demonstrated load, not the machine's absolute maximum. Separately, **{u['vus']:,} browsing virtual users** passed a five-minute hold with the reel's pacing.
 
-| Workload | Offered load | Hold | Validated req/s | Full p95 / p99 ms | Outstanding mean / peak | Errors |
+The [HTTP-only reconstruction](http-active.json) uses [k6's end timestamp and transport duration](https://grafana.com/docs/k6/latest/using-k6/metrics/reference/), excluding setup, validation and recording. The broader client-operation mean {a['outstanding_mean']:.1f} / peak {a['outstanding_peak']:,} below includes those extra client costs and must not be called HTTP-only concurrency. SQLite execution remains serialized.
+
+| Workload | Offered load | Hold | Validated req/s | Full p95 / p99 ms | Client-operation mean / peak | Errors |
 | --- | --- | ---: | ---: | ---: | ---: | ---: |
 {chr(10).join(rows)}
 

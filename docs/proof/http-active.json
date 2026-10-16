@@ -1,0 +1,18 @@
+{
+  "peak": 2048,
+  "minimum": 0,
+  "unfinished": 0,
+  "first_start_epoch_s": 1792130154.9066494,
+  "last_end_epoch_s": 1792130455.008408,
+  "observed_span_s": 300.1017587184906,
+  "mean": 743.8284730406785,
+  "requests": 3149069,
+  "zero_width_intervals": 0,
+  "http_duration_mean_ms": 70.88578654338696,
+  "scope": "HTTP requests tagged at wrapper start as hold; transport interval reconstructed from end minus sending+waiting+receiving duration. Excludes connection setup, JS validation and metric recording; does not count simultaneous SQLite execution.",
+  "source_run": "proof/runs/active-hold",
+  "raw_sha256": "b2e54ad0946e0ce3c7bd2874dcc3066c41ba4d97d8e2edf86839dcca3a418d86",
+  "binary_sha256": "9a652c867a36449ab0acfc3988a8b16c149f4bd4b44faca2aac40bea33fc26e5",
+  "method_source": "https://grafana.com/docs/k6/latest/using-k6/metrics/reference/",
+  "precision": "Timestamp parsed to microsecond resolution; zero-width intervals excluded from peak, retained in request count."
+}

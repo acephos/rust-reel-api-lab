@@ -6,7 +6,7 @@ The optimized engine is **derived from the MIT-licensed submission featured in t
 
 ## Run locally
 
-Linux6.1+ with working io_uring, C compiler, curl, Python3, SQLite CLI, jq, openssl, Node18+ and Rust1.98.1. Use [scripts/install-deps.sh](scripts/install-deps.sh) to check utilities and install the pinned Rust toolchain through an existing rustup installation. No root or kernel tuning is needed. Initial SQLite PGO compilation takes several minutes.
+Linux 6.1+ with working io_uring, C compiler, curl, Python3, SQLite CLI, jq, openssl, Node 18+ and Rust 1.98.1. Use [scripts/install-deps.sh](scripts/install-deps.sh) to check utilities and install the pinned Rust toolchain through an existing rustup installation. No root or kernel tuning is needed. Initial SQLite PGO compilation takes several minutes.
 
 ```bash
 bash scripts/build.sh
@@ -34,7 +34,7 @@ HOST=127.0.0.1 PORT=3000 SQLITE_PATH=/tmp/api-benchmark.db \
 | Endpoint | Behavior |
 | --- | --- |
 | `GET /health` | SQLite query and uptime |
-| `GET /feed` | Latest20 posts and current like counts |
+| `GET /feed` | Latest 20 posts and current like counts |
 | `GET /posts/:id` | Post detail |
 | `POST /posts` | Commit a post, bearer JWT required |
 | `POST /posts/:id/like` | Commit an idempotent like, bearer JWT required |
@@ -43,7 +43,7 @@ Read the [exact upstream API contract](third_party/challenge/SPEC.md). There are
 
 ## Strategies implemented
 
-Custom HTTP/1.1, keep-alive/pipelining/chunked framing; io_uring shared completion/submission rings; multishot direct accept and receive; provided receive buffers;64-byte **aligned** connection records; reusable stable output allocations; batched completions, reads and committed writes; one serialized SQLite connection; WAL/NORMAL, prepared plans, mmap and live range scans; checksum-verified SQLite3.53.4 built with PGO; native CPU instructions and Rust fat LTO. No cross-request response, query-data or JWT-validation cache. See the [timestamped reel analysis](docs/reel-analysis.md), [design](docs/design.md) and [primary-source research](docs/research/challenge.md).
+Custom HTTP/1.1, keep-alive/pipelining/chunked framing; io_uring shared completion/submission rings; multishot direct accept and receive; provided receive buffers; 64-byte **aligned** connection records; reusable stable output allocations; batched completions, reads and committed writes; one serialized SQLite connection; WAL/NORMAL, prepared plans, mmap and live range scans; checksum-verified SQLite 3.53.4 built with PGO; native CPU instructions and Rust fat LTO. No cross-request response, query-data or JWT-validation cache. See the [timestamped reel analysis](docs/reel-analysis.md), [design](docs/design.md) and [primary-source research](docs/research/challenge.md).
 
 ## Correctness and proof
 
@@ -54,7 +54,7 @@ python3 tests/functional.py --seed third_party/challenge/seed/feed.db \
   --server target/release/twelve-rust-poll --backend both --output docs/proof/functional-final.json
 ```
 
-The upstream suite checks42 exact responses against a fresh full dataset. Additional checks exercise Unicode, authentication, framing, fragmented/pipelined traffic, slow clients, connection churn, live mutations and process-kill recovery. Tests use disposable copies. Results/review: [functional evidence](docs/proof/functional-final.json), [review](docs/review.md).
+The upstream suite checks 42 exact responses against a fresh full dataset. Additional checks exercise Unicode, authentication, framing, fragmented/pipelined traffic, slow clients, connection churn, live mutations and process-kill recovery. Tests use disposable copies. Results/review: [functional evidence](docs/proof/functional-final.json), [review](docs/review.md).
 
 Capacity evidence and exact commands are in [the machine-specific proof](docs/proof/README.md) and [benchmark tooling guide](bench/README.md). These are co-located loopback measurements, with the generator sharing this laptop's resources. Virtual users with think time, established sockets, outstanding requests and requests/second are distinct. Five-minute passes demonstrate the stated tested load; they do not establish an absolute maximum or production/Internet capacity. The reel's64,000-user result is not this project's measurement.
 
