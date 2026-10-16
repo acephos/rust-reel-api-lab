@@ -56,7 +56,7 @@ def load_run(path):
         'server_rss_peak_bytes': resource('server', 'rss_bytes', max),
         'generator_cpu_mean_percent_one_core': resource('client', 'cpu_percent_one_core', statistics.mean),
         'generator_rss_peak_bytes': resource('client', 'rss_bytes', max),
-        'resource_sampling_scope': 'All sampled phases, including ramp and drain; CPU100% means one logical core.',
+        'resource_sampling_scope': 'All sampled phases, including ramp, drain and raw-export tail; CPU100% means one logical core.',
         'source_commit': machine['git']['stdout'].strip(),
         'binary_sha256': machine['server_executable_sha256'],
         'artifact_path': str(folder.resolve().relative_to(Path.cwd().resolve())),
@@ -105,6 +105,7 @@ notes = [
     'Latencies are full HTTP plus JSON validation, at 1-ms resolution, for requests started during the hold. Every endpoint also passes p95<500ms / p99<1000ms. Semantic and HTTP failures are zero.',
     'This is a demonstrated passing load, not an absolute maximum or an official droplet score. The generator is a material bottleneck; more server CPU headroom is not proof of a higher untested capacity.',
     'Open arrivals use k6 constant-arrival-rate and require zero drops. Latencies are not wrk2 planned-schedule-corrected; arrival accounting and any theoretical scheduling-boundary residual are retained.',
+    'Resource CPU means include all sampled phases and the raw-export tail after requests stop; inspect timestamped samples for the request-active window. CPU100% means one logical core.',
     'Complete per-request gzip events are retained locally with SHA256 references. GitHub contains exact summaries, interval histograms, concurrency accounting and resource samples; large raw event streams are not published.',
 ]
 report = {'status': 'complete', 'generated_utc': datetime.now(timezone.utc).isoformat(),

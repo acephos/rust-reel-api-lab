@@ -1,0 +1,36 @@
+{
+  "captured_utc": "2026-10-16T05:59:49.631036+00:00",
+  "engine_build_command": "bash scripts/build.sh",
+  "rustflags": "-C target-cpu=native",
+  "features": "default=[sqlite-pgo]",
+  "release_profile": {
+    "opt-level": 3,
+    "lto": "fat",
+    "codegen-units": 1,
+    "panic": "abort",
+    "strip": true
+  },
+  "rustc": "rustc 1.98.1 (48a229cea 2026-09-01)\nbinary: rustc\ncommit-hash: 48a229ceaefd4985c50990b14116b6d856af0985\ncommit-date: 2026-09-01\nhost: x86_64-unknown-linux-gnu\nrelease: 1.98.1\nLLVM version: 22.1.8\n",
+  "cc": "cc (GCC) 16.2.1 20260810\nCopyright (C) 2026 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\n\n",
+  "sha256": {
+    "Cargo.toml": "cba81e35a7ce21155e2e7b300c0102a0029ca07e80cc2f94c24fe921132265f2",
+    "Cargo.lock": "436f527291afa15c52a8fe6ee157c392408ad18b6ce59f784c63d4c5cec43ad7",
+    "rust-toolchain.toml": "887f9be066a15585a2c583578e84b0fcb541126d81546276bad3d2ff00d61167",
+    "build.rs": "5bf54f6bd9601a7191f5064d56ce480fc23e0a4fe25d8ac91598a7948aeabe4e",
+    "bench/train_sqlite.c": "dd7d056bf259e587e8a21b902bb5469b4ea75b41a511c00d328eacb019a48967",
+    "vendor/sqlite3.c": "b1dd5d74ec7f29055a6684fa06fb3c2f6821c87dd38f9a458dfd2e8a1db28189",
+    "vendor/sqlite3.h": "919e7f2e8ed1d8f56ac17b412b8971c76aa5d1a879752cc6058f75e7d5910e1d",
+    "target/release/twelve-rust-poll": "9a652c867a36449ab0acfc3988a8b16c149f4bd4b44faca2aac40bea33fc26e5"
+  },
+  "pgo_profile_files": [
+    "target/release/build/twelve-rust-poll-f988ad9560abb7c9/out/sqlite-profile/home/ace/.t3/scratch/2026-10-16-https-www-instagram-com-reel-19f08710/target/release/build/twelve-rust-poll-f988ad9560abb7c9/out/sqlite-pgo.gcda",
+    "target/release/build/twelve-rust-poll-f988ad9560abb7c9/out/sqlite-profile/home/ace/.t3/scratch/2026-10-16-https-www-instagram-com-reel-19f08710/target/release/build/twelve-rust-poll-f988ad9560abb7c9/out/sqlite-train-train_sqlite.gcda",
+    "target/release/build/twelve-rust-poll-391db8c908111270/out/sqlite-profile/home/ace/.t3/scratch/2026-10-16-https-www-instagram-com-reel-19f08710/target/release/build/twelve-rust-poll-391db8c908111270/out/sqlite-pgo.gcda",
+    "target/release/build/twelve-rust-poll-391db8c908111270/out/sqlite-profile/home/ace/.t3/scratch/2026-10-16-https-www-instagram-com-reel-19f08710/target/release/build/twelve-rust-poll-391db8c908111270/out/sqlite-train-train_sqlite.gcda"
+  ],
+  "notes": [
+    "SQLite archive SHA256 pinned and expanded source files verified on every build.",
+    "PGO training uses disposable synthetic data, not the challenge seed.",
+    "Binary is native to this CPU; rebuild for another CPU."
+  ]
+}
